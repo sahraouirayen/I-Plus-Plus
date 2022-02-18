@@ -5,12 +5,15 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity("email")
  */
 class User implements UserInterface
 {
@@ -48,9 +51,10 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=60, nullable=false)
+     * @ORM\Column(name="email", type="string", length=60, nullable=false,unique=true)
      * @Assert\NotBlank(message="l'email est requis")
      * @Assert\Email(message="l'email {{value}} n'est pas valide")
+     *
      */
     private $email;
 
@@ -92,7 +96,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="roles", type="json", nullable=true)
      */
-    private $roles=['ROLE_USER'];
+    private $roles=[];
 
     public function getIdUser(): ?int
     {

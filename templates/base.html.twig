@@ -49,7 +49,10 @@
         </a>
         <div class="user-panel">
            {% if app.user %}
-               {{ app.user.username }}
+
+              <a href="/user/compte">
+                  {{ app.user.username }}
+              </a>
             {% else %}
                 <a href="{{ asset('/login')}}">Login</a>  /  <a href="{{ asset('/inscription')}}">Register</a>
             {% endif %}

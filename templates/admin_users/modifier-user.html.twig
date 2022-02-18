@@ -1,0 +1,53 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Hello AdminUsersController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    {% block content %}
+
+        <div style="background-color: #000000">
+            <div class="row my-5 mx-3 justify-content-center">
+                <div class="col-6 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Modifier Utilisateur</h4>
+                            {{ form_start(form,{'attr':{'class':'forms-sample'}}) }}
+                                <div class="form-group">
+
+                                    {{ form_label(form.email,"Email") }}
+                                    {{ form_errors(form.email)  }}
+                                    {{ form_widget(form.email , {'attr':{'class':'form-control p_input'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.nom,"Nom") }}
+                                    {{ form_errors(form.nom)  }}
+                                    {{ form_widget(form.nom , {'attr':{'class':'form-control p_input'}}) }}
+                                </div>
+                                <div class="form-group">
+                                   {{  form_label(form.prenom,"Prénom") }}
+                                    {{ form_errors(form.prenom)  }}
+                                    {{ form_widget(form.prenom , {'attr':{'class':'form-control p_input'}}) }}
+                                </div>
+                                <div class="form-check  ">
+                                  {{ form_row(form.roles) }}
+                                </div>
+
+                          <div class="d-flex justify-content-around mt-5">
+                              {{ form_row(form.submit, {'attr': {'class' : 'btn btn-warning btn-block enter-btn'}} ) }}
+                              <a href="/admin/users">
+                                  <button class="btn btn-dark">Cancel</button>
+                              </a>
+                          </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
