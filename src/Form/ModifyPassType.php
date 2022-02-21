@@ -17,7 +17,7 @@ class ModifyPassType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('email', EmailType::class ,  ['disabled' => true ])
+             ->add('email', EmailType::class ,  ['disabled' => true ])
 
             ->add('nom', TextType::class ,  ['disabled' => true ])
             ->add('prenom',TextType::class ,  ['disabled' => true ])

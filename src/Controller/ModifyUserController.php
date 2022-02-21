@@ -82,19 +82,5 @@ class ModifyUserController extends AbstractController
             'notification' => $notification
         ]);
     }
-    /**
-     * @Route("/user/compte/delete", name="deleteStudent")
-     */
-    public function deleteUser( )
-    {
-        $user= $this->getUser();
-        $em = $this->getDoctrine()->getManager();
-        if($user){
-            $em->remove($user);
-            $em->flush();
-            return $this->redirectToRoute("app_login");
-        }
 
-        return $this->render('modify_user/index.html.twig');
-    }
 }

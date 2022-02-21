@@ -6,9 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Connexion</title>
     <link href="{{ asset('img/favicon.ico')}}" rel="shortcut icon"/>
-    <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}"/>
+    <style>
+        body{
+            background: no-repeat 100% url("{{ asset('https://i.pinimg.com/originals/5d/ca/87/5dca87b6088664ae9fa8080986a58b4c.png') }}");
+            background-size: cover;
+
+        }
+    </style>
 </head>
 <body>
 
@@ -27,9 +32,9 @@
 
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="row w-100 m-0">
-                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-                    <div class="card col-lg-4 mx-auto">
+            <div class="row w-100 d-flex align-items-center justify-content-center" style="margin-top: 8%">
+                <div class="content-wrapper full-page-wrapper d-flex align-items-center">
+                    <div class="card col-lg-12 mx-auto" style="background-color: rgba(255,255,255,0.75)">
                         <div class="card-body px-5 py-5">
                             <h3 class="card-title text-left mb-3">Connexion</h3>
                             <form>
@@ -47,19 +52,15 @@
                                 <input type="hidden" name="_csrf_token"
                                        value="{{ csrf_token('authenticate') }}"
                                 >
-                                <div class="form-group d-flex align-items-center justify-content-between">
 
-                                    <a href="#" class="forgot-pass">Mot de passe oublié</a>
-                                </div>
-                                <div class="text-center">
+                                <div class="text-center d-flex justify-content-center">
 
-                                    <button class="btn btn-warning btn-block enter-btn" type="submit">
+                                    <button class="btn btn-warning btn-block enter-btn text-white w-50 " type="submit">
                                         connexion
                                     </button>
                                 </div>
 
-                                <p class="sign-up">Vous n'avez pas de compte ?<a href="/inscription"> S'inscrire</a></p>
-                            </form>
+                                </form>
                         </div>
                     </div>
                 </div>
@@ -69,8 +70,6 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-
-
 
 
     {#

@@ -37,4 +37,13 @@ class UserController extends AbstractController
         );
 
     }
+    /**
+     * @Route("/notfound", name="not_found")
+     */
+    public function notfound(): Response
+    {
+        return $this->render('user/notfound.html.twig', [
+            'controller_name' => 'NewController',
+        ]);
+    }
 }

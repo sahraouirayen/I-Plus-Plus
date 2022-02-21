@@ -28,27 +28,33 @@
                                </tr>
                                </thead>
                                <tbody>
-                               {% for user in users %}
-                                   <tr>
+                               {% for userr in users %}
+                                   {% if userr.email is not same as app.user.username   %}
+                                       <tr>
 
-                                       <td> {{ user.nom }} {{ user.prenom }} </td>
-                                       <td> {{user.email}} </td>
-                                       <td> {{ user.numTel }} </td>
-                                       <td> {% for role in user.roles%}
-                                       {{ role }}
-                                           {% endfor %}
-                                       </td>
-                                       <td> <a href="/admin/users/{{ user.idUser }}">
-                                               <div class="badge badge-outline-success">Modifier</div>
-                                           </a>
-                                       <td>
-                                          {% if is_granted('ROLE_ADMIN') %}
-                                              <a href="/admin/users/delete/{{ user.idUser }}">
-                                                  <div class="badge badge-outline-danger">Supprimer</div>
-                                              </a>
-                                           {% endif %}
-                                       </td>
-                                   </tr>
+                                           <td> {{ userr.nom }} {{ userr.prenom }} </td>
+                                           <td> {{userr.email}} </td>
+                                           <td> {{ userr.numTel }} </td>
+                                           <td> {% for role in userr.roles%}
+                                                   {% if role == "ROLE_ADMIN" %}
+                                                        Administrateur
+                                                   {% else %}
+                                                          Utilisateur
+                                                   {% endif %}
+                                               {% endfor %}
+                                           </td>
+                                           <td> <a href="/admin/users/{{ userr.idUser }}">
+                                                   <div class="badge badge-outline-success">Modifier</div>
+                                               </a>
+                                           <td>
+
+                                                   <a href="/admin/users/delete/{{ userr.idUser }}">
+                                                       <div class="badge badge-outline-danger">Supprimer</div>
+                                                   </a>
+
+                                           </td>
+                                       </tr>
+                                   {% endif %}
                                {% endfor %}
 
                                </tbody>

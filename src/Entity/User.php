@@ -53,7 +53,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="email", type="string", length=60, nullable=false,unique=true)
      * @Assert\NotBlank(message="l'email est requis")
-     * @Assert\Email(message="l'email {{value}} n'est pas valide")
+     * @Assert\Email(message="l'email  n'est pas valide")
      *
      */
     private $email;
@@ -65,8 +65,7 @@ class User implements UserInterface
      * @Assert\NotBlank(message="le mot de passe est requis")
      * @Assert\Regex(pattern="/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/" ,
      *     match=true ,
-     *     message="le mot de passe doit contenir au moins 1 chiffre , un caractére majuscule ,un caractére minuscule
-     * et de longeur 8")
+     *     message=" 1chiffre,un caractére majuscule et minuscul et de longeur 8")
      */
     private $password;
 
