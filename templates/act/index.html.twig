@@ -34,6 +34,7 @@
     <![endif]-->
 
 </head>
+
 <body>
 <!-- Page Preloder -->
 <div id="preloder">
@@ -74,6 +75,7 @@
 
 
 <!-- Latest news section -->
+{% block body %}
 <div class="latest-news-section">
     <div class="ln-title">Latest News</div>
     <div class="news-ticker">
@@ -425,7 +427,7 @@
     </div>
 </section>
 <!-- Footer top section end -->
-
+{% endblock body%}
 
 <!-- Footer section -->
 {% block footer %}
