@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModifyUserController!{% endblock %}
+
+
+{% block body %}
+
+    {% block content %}
+
+<div class="container d-flex justify-content-center my-5 ">
+    <div class="row w-50">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card ">
+                <div class="card-body">
+                    <h4 class="card-title">Reclammer</h4>
+
+                    {{ form_start(form,{'attr':{'novalidate' :'novalidate' }}) }}
+                    <div class="form-group">
+
+                        {{ form_label(form.sujet_rec,"sujet_rec") }}
+                            
+                        {{ form_widget(form.sujet_rec , {'attr':{'class':'form-control p_input'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.niveau,"niveau") }}
+                        {{ form_errors(form.niveau)  }}
+                        {{ form_widget(form.niveau , {'attr':{'class':'form-control p_input'}}) }}
+                    </div>
+                     <div class="form-group">
+                        {{ form_label(form.type,"type") }}
+                        {{ form_errors(form.type)  }}
+                        {{ form_widget(form.type , {'attr':{'class':'form-control p_input'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.user_id,"user") }}
+                        {{ form_errors(form.user_id)  }}
+                        {{ form_widget(form.user_id , {'attr':{'class':'form-control p_input'}}) }}
+                    </div>
+
+                       <div class="text-center d-flex justify-content-around">
+                        {{ form_row(form.enregistrer, {'attr': {'class' : 'btn btn-warning btn-block enter-btn'}} ) }}
+                        <button class="btn ">
+                            <a href="/new">Cancel</a>
+                        </button>
+                    </div>
+
+                    
+
+                    
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% endblock %}
+{% endblock %}
