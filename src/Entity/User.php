@@ -17,6 +17,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User implements UserInterface
 {
+    const ROLE_ADMIN="ROLE_ADMIN";
+
     /**
      * @var int
      *
@@ -53,7 +55,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="email", type="string", length=60, nullable=false,unique=true)
      * @Assert\NotBlank(message="l'email est requis")
-     * @Assert\Email(message="l'email  n'est pas valide")
+     * @Assert\Email(message="l'email {{value}} n'est pas valide")
      *
      */
     private $email;
@@ -65,7 +67,8 @@ class User implements UserInterface
      * @Assert\NotBlank(message="le mot de passe est requis")
      * @Assert\Regex(pattern="/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/" ,
      *     match=true ,
-     *     message=" 1chiffre,un caractére majuscule et minuscul et de longeur 8")
+     *     message="le mot de passe doit contenir au moins 1 chiffre , un caractére majuscule ,un caractére minuscule
+     * et de longeur 8")
      */
     private $password;
 
@@ -96,6 +99,11 @@ class User implements UserInterface
      * @ORM\Column(name="roles", type="json", nullable=true)
      */
     private $roles=[];
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resetToken;
 
     public function getIdUser(): ?int
     {
@@ -216,5 +224,20 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+    public function isAdmin():bool{
+        return in_array(self::ROLE_ADMIN,$this->getRoles());
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
     }
 }

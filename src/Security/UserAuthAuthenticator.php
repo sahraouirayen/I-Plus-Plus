@@ -79,7 +79,6 @@ class UserAuthAuthenticator extends AbstractFormLoginAuthenticator implements Pa
     public function checkCredentials($credentials, UserInterface $user)
     {
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
-
     }
 
     /**
@@ -94,6 +93,10 @@ class UserAuthAuthenticator extends AbstractFormLoginAuthenticator implements Pa
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
+        }
+        if($token->getUser()->isAdmin()){
+            return new RedirectResponse($this->urlGenerator->generate('admin_users'));
+
         }
 
         return new RedirectResponse($this->urlGenerator->generate('new'));

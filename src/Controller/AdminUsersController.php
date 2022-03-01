@@ -24,9 +24,18 @@ class AdminUsersController extends AbstractController
     /**
      * @Route("/admin/users", name="admin_users")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        if($request->isMethod("GET")){
+            $email = $request->get("email");
+            $nom = $request->get("nom");
+            if($email != ""){
+                $users = $this->getDoctrine()->getRepository(User::class)->findOneByEmail($email);
+            }elseif ($nom != ""){
+                $users = $this->getDoctrine()->getRepository(User::class)->findOneByName($nom);
+            }
+        }
         return $this->render('admin_users/index.html.twig', [
             "users"=>$users
         ]);
@@ -75,7 +84,7 @@ class AdminUsersController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($this->getUser());
                 $em->flush();
-                return $this->redirectToRoute('admin_users');
+                return $this->redirectToRoute('dash');
             }
 
             return $this->render('admin_users/admin-modifier.html.twig', [
@@ -105,7 +114,7 @@ class AdminUsersController extends AbstractController
                 $entityManager->persist($user);
                 $entityManager->flush();
                 $notification = "votre mot de passe a bien été mise à jour";
-                return $this->redirectToRoute('admin_users');
+                return $this->redirectToRoute('dash');
 
 
             }else { $notification= "votre mot de passe actuel n'est pas le bon"; }
