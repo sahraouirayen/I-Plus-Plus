@@ -9,14 +9,16 @@ use App\Form\ModifyUserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mercure\PublisherInterface;
+use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * Require ROLE_ADMIN for all the actions of this controller
+ * Require ROLE_SUPER_ADMIN only for this action
  *
- * @IsGranted("ROLE_ADMIN")
+ *@IsGranted("ROLE_SUPER_ADMIN")
  */
 
 class AdminUsersController extends AbstractController
@@ -29,12 +31,18 @@ class AdminUsersController extends AbstractController
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
         if($request->isMethod("GET")){
             $email = $request->get("email");
-            $nom = $request->get("nom");
-            if($email != ""){
+            $roles=$request->get("rolee");
+            if($roles != "" && $email!=""){
                 $users = $this->getDoctrine()->getRepository(User::class)->findOneByEmail($email);
-            }elseif ($nom != ""){
-                $users = $this->getDoctrine()->getRepository(User::class)->findOneByName($nom);
+                $users += $this->getDoctrine()->getRepository(User::class)->findByRole($roles);
             }
+            else if($email != ""){
+                $users = $this->getDoctrine()->getRepository(User::class)->findOneByEmail($email);
+            }
+           else if ($roles != ""){
+                $users = $this->getDoctrine()->getRepository(User::class)->findByRole($roles);
+            }
+
         }
         return $this->render('admin_users/index.html.twig', [
             "users"=>$users

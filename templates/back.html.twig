@@ -33,6 +33,7 @@
             <a class="sidebar-brand brand-logo-mini" href="{{ asset('index.html')}}"><img src="{{ asset('assets/images/logo-mini.svg')}}" alt="logo" /></a>
         </div>
         <ul class="nav">
+            <h1 id="idd">Hello</h1>
             <li class="nav-item profile">
                 <div class="profile-desc">
                     <div class="profile-pic">
@@ -80,12 +81,15 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="/admin/users">
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <a class="nav-link" href="/admin/users">
                   <span class="menu-icon">
                    <i class="fa fa-users" aria-hidden="true"></i>
                   </span><span class="menu-title">Utilisateurs</span>
 
-                </a>
+                    </a>
+                {% endif %}
+
                <!-- <a class="nav-link" data-toggle="collapse" href="{{ asset('#ui-basic')}}" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
@@ -272,46 +276,19 @@
                             <i class="mdi mdi-bell"></i>
                             <span class="count bg-danger"></span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list preview-list-notif" aria-labelledby="notificationDropdown">
                             <h6 class="p-3 mb-0">Notifications</h6>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-calendar text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Event today</p>
-                                    <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
+                            <a class="dropdown-item preview-item user-notif">
+                                <div class="preview-item-content user-notif-text">
+
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-settings text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Settings</p>
-                                    <p class="text-muted ellipsis mb-0"> Update dashboard </p>
-                                </div>
-                            </a>
+
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-link-variant text-warning"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Launch Admin</p>
-                                    <p class="text-muted ellipsis mb-0"> New admin wow! </p>
-                                </div>
-                            </a>
+
                             <div class="dropdown-divider"></div>
-                            <p class="p-3 mb-0 text-center">See all notifications</p>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -1051,5 +1028,33 @@
 <!-- Custom js for this page -->
 <script src="{{ asset('assets/js/dashboard.js')}}"></script>
 <!-- End custom js for this page -->
+<script>
+    console.log("event")
+    document.addEventListener('DOMContentLoaded',function (){
+        let url = new URL('https://127.0.0.1:8001/.well-known/mercure')
+        url.searchParams.append('topic','/home')
+        const eventSource = new EventSource(url, {withCredentials: true});
+        var data
+        eventSource.onmessage=(event)=>{
+            console.log(event.data)
+
+             data = JSON.parse(event.data)
+            console.log(data[0])
+            var tag = document.createElement("p");
+            var tag2 = document.createElement("p");
+            tag2.classList.add("text-muted")
+            var text = document.createTextNode(data[0]);
+            var text2=document.createTextNode("Just created a new account")
+            tag.appendChild(text);
+            tag2.appendChild(text2)
+            var element = document.getElementsByClassName("user-notif-text");
+            element[0].appendChild(tag);
+            element[0].appendChild(tag2);
+
+
+        }
+       /* )*/
+    })
+</script>
 </body>
 </html>

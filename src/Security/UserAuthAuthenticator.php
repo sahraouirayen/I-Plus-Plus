@@ -95,6 +95,10 @@ class UserAuthAuthenticator extends AbstractFormLoginAuthenticator implements Pa
             return new RedirectResponse($targetPath);
         }
         if($token->getUser()->isAdmin()){
+            return new RedirectResponse($this->urlGenerator->generate('dash'));
+
+        }
+        if($token->getUser()->isSuperAdmin()){
             return new RedirectResponse($this->urlGenerator->generate('admin_users'));
 
         }

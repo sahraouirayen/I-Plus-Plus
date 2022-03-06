@@ -18,6 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class User implements UserInterface
 {
     const ROLE_ADMIN="ROLE_ADMIN";
+    const  ROLE_SUPER_ADMIN="ROLE_SUPER_ADMIN";
 
     /**
      * @var int
@@ -98,7 +99,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="roles", type="json", nullable=true)
      */
-    private $roles=[];
+    private $roles=["ROLE_USER"];
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -227,6 +228,9 @@ class User implements UserInterface
     }
     public function isAdmin():bool{
         return in_array(self::ROLE_ADMIN,$this->getRoles());
+    }
+    public function isSuperAdmin():bool{
+        return in_array(self::ROLE_SUPER_ADMIN,$this->getRoles());
     }
 
     public function getResetToken(): ?string

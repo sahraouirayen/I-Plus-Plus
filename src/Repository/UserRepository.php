@@ -33,16 +33,8 @@ class UserRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
-    public function findOneByName($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.nom = :val')
-            ->setParameter('val', $value)
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-            ;
-    }
+
+
     public function findOneByResetToken($value)
     {
         return $this->createQueryBuilder('u')
@@ -51,6 +43,22 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
             ;
+    }
+    public function findByRole(string $role): array
+    {
+        // The ResultSetMapping maps the SQL result to entities
+        $rsm = $this->createResultSetMappingBuilder('s');
+
+        $rawQuery = sprintf(
+            'SELECT %s
+        FROM user s 
+        WHERE JSON_CONTAINS(s.roles, :role, "$")',
+            $rsm->generateSelectClause()
+        );
+
+        $query = $this->getEntityManager()->createNativeQuery($rawQuery, $rsm);
+        $query->setParameter('role', sprintf('"%s"', $role));
+        return $query->getResult();
     }
 
 
