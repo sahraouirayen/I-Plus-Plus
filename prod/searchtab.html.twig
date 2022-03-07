@@ -1,0 +1,115 @@
+{% extends 'back.html.twig' %}
+
+
+
+{% block body %}
+<div class="section_padding">
+    <div class="section-top-border">
+
+        <div  class="" style="background-color:#fafafa ;position:relative; top: 100px; margin-left: 30px; width: 950px;">
+            <h1 style="color: #020101">Livraisons </h1>
+            <br>
+
+            <br>
+            <br>
+            <input id="search" class="form-control form-control-sidebar"  type="search" placeholder="Chercher" aria-label="search">
+
+            <br>
+
+            <table class="table">
+                <thead>
+                <tr style="color: #a65959">
+
+
+                    <th>Livraison ID</th>
+                    <th>Nom</th>
+                    <th>Prenm</th>
+                    <th>Destination</th>
+                    <th>Num Tel</th>
+                    <th>Etat</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody id="allQQQ">
+                {% for livraison in livraisons %}
+
+                    <tr style="color: grey">
+                        <td>{{ livraison.livraisonId }}</td>
+                        <td>{{ livraison.nom }}</td>
+                        <td>{{ livraison.Prenom }}</td>
+                        <td>{{ livraison.adresse }}</td>
+                        <td>{{ livraison.numTel }}</td>
+                        <td>{{ livraison.etat }}</td>
+                        {% if  livraison.etat  == 'En Attente' %}
+                            {% if livraison.livreur == NULL %}
+                                <td>
+                                    <a class="btn btn-info" href="{{ path('livreurs', {'id': livraison.livraisonId}) }}">Affecter Au livreur</a>
+                                </td>
+                            {% endif %}
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="11">Pas de Livraisons</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tbody id="search12">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+    $( document ).ready(function() {
+        $("#search").keyup(function(e){
+            var value = $(this).val();
+            $.ajax({
+                url : "{{ path('admrecherchelivr') }}",
+                type : 'GET',
+                data: {
+                    'livraison' : value
+                },
+                success : function(retour){
+                    if(retour){
+                        $("#search12").empty();
+                        $.each(JSON.parse(retour), function(i, r) {
+                            $("#allQQQ").hide();
+                            if(r.etat=='En Attente')
+                                $("#search12").append('<tr style="color: grey">' +
+                                    '<td> '+r.livraisonId+' </td>' +
+                                    '<td>'+r.nom+' </td>' +
+                                    '<td>'+r.prenom+' </td>'+
+                                    '<td>'+r.adresse+' </td>' +
+                                    '<td>'+r.numTel+' </td>' +
+                                    '<td>'+r.etat+' </td>' +
+                                    '<td><a class="btn btn-info" href="Livreur/'+r.livraisonId+'">Affecter au Livreur</a> </td></tr>');
+                            else
+                                $("#search12").append('<tr style="color: grey">' +
+                                    '<td> '+r.livraisonId+' </td>' +
+                                    '<td>'+r.nom+' </td>' +
+                                    '<td>'+r.prenom+' </td>'+
+                                    '<td>'+r.adresse+' </td>' +
+                                    '<td>'+r.numTel+' </td>' +
+                                    '<td>'+r.etat+' </td></tr>');
+                        });
+                    }
+                    else
+                    {
+                        $("#allQQQ").show();
+                        $("#search12").empty();
+                        $("#search12").fadeIn('fast');
+                    }
+                },
+            });
+            return false;
+        });
+    });
+</script>
+{% endblock body %}

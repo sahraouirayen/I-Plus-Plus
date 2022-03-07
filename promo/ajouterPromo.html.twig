@@ -1,0 +1,28 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}    <h1> Ajouter Promotion </h1>
+    <table>
+        <tr>
+            <td>
+
+                {{ form_label(form.pourcentPromo,"pourcentPromo : ") }}
+            </td><td>
+                {{ form_widget(form.pourcentPromo) }}
+            </td>
+            <td>{{ form_errors(form.pourcentPromo) }}</td>
+        </tr>
+        <tr>
+            <td>
+
+                {{ form_label(form.dateExp,"dateExp : ") }}
+            </td><td>
+                {{ form_widget(form.dateExp)}}
+            </td>
+            <td>{{ form_errors(form.dateExp) }}</td>
+        </tr>
+
+    </table>
+    {{ form_end(form) }}
+
+{% endblock %}
