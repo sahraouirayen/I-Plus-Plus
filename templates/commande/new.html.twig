@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Commande{% endblock %}
+
+{% block body %}
+    {% block content %}
+        <section class="bg-light p-3">
+            <h1>Votre Commande</h1>
+        </section>
+        <i class="bi bi-cart-x"></i>
+        </a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>id commande</th>
+                <th>produit</th>
+                <th>Quantité</th>
+                <th>Prix*Quantite</th>
+            </tr>
+            </thead>
+
+
+            <tbody class="w-100">
+            {% for ligne in commande.ligneCommandes %}
+
+            <tr class="w-100">
+                <td>{{ commande.id }}</td>
+                    <td class="text-end">{{ ligne.Produit.title }}</td>
+                    <td class="text-end">{{ ligne.quantite }}</td>
+                    <td class="text-end">{{ ligne.price }}</td>
+
+            </tr>
+            {% endfor %}
+
+
+
+            </tbody>
+        </table>
+
+    {% endblock %}
+{% endblock %}
