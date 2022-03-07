@@ -1,0 +1,18 @@
+{% extends 'back.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}New Actualite{% endblock %}
+
+{% block body %}
+    {% block content %}
+
+
+    <div class="container">
+
+        <h1>Create new Actualite</h1>
+        {{ include('actualite/_form.html.twig') }}
+
+        <a href="{{ path('actualite_indexdash') }}">back to list</a>
+    </div>
+{% endblock %}
+
+{% endblock %}

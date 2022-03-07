@@ -1,0 +1,303 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement {% endblock %}
+
+{% block body %}
+    {% block content %}
+        <h1>Evenement </h1>
+
+
+        <div id="divs">
+            <input type="text" id="search" placeholder="recherche par Nom 🔍">
+            <a class="tg-btn" href="" id="idup">ID (UP) ⬆️</a>
+            <a class="tg-btn" href="" id="iddown">ID (DOWN) ⬇️</a>
+        </div>
+
+
+
+
+
+        <table id="t" class="table">
+            <thead>
+            <tr>
+                <th>IdEvent</th>
+                <th>NomEvent</th>
+                <th>Date</th>
+                <th>Lieu</th>
+                <th>DescEvent</th>
+                <th>Type</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody id="all">
+            {% for evenement in evenements %}
+                <tr>
+                    <td>{{ evenement.idEvent }}</td>
+                    <td>{{ evenement.nomEvent }}</td>
+                    <td>{{ evenement.date ? evenement.date|date('Y-m-d') : '' }}</td>
+                    <td>{{ evenement.lieu }}</td>
+                    <td>{{ evenement.descEvent }}</td>
+                    <td>{{ evenement.type }}</td>
+
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('evenement_show', {'idEvent': evenement.idEvent}) }}">show</a>
+                        <a class="btn btn-success" href="{{ path('app_reservation_new', {'idevent': evenement.idEvent,'idUser':app.user.idUser}) }}">Participer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+
+            <tbody id="search">
+
+            </tbody>
+
+
+
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $( document ).ready(function() {
+
+                /*begin rechercher avancee multicritéres selon nom et lieux*/
+                $("#divs").keyup(function(e){
+                    /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                    var value = $("#search").val();
+                    if(value.length >= 1 || value.length == 0  )
+                    {
+
+                        //    alert(value);
+                        /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                        $.ajax({
+                            /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                            url : "{{ path('search_event') }}",
+                            /* La méthode utilisée pour transférer les données est GET */
+                            type : 'GET',
+                            /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                            data: {
+                                'searchValue' : value
+                            },
+                            /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                            success : function(retour){
+                                if(retour){
+                                    $('#t tbody#search').empty();
+                                    $.each(JSON.parse(retour), function(i, obj) {
+                                        $('#t tbody#all').hide();
+                                        $('#t tbody#search').append('<tr><td> '+obj.idEvent+'  </td><td>    '+obj.nomEvent+'  </td> <td>'+obj.date+' </td>  <td>'+obj.lieu+' </td>  <td>'+obj.descEvent+' </td> </td>  <td>'+obj.type+' </td>  <td> <a href="/evenement/'+obj.idEvent+'/edit">🖊️</a> </td>   </tr>');
+                                    });
+                                }
+                                else
+                                {
+
+                                    $('#t tbody#all').show();
+                                    $('#t tbody#search').empty();
+                                    $('#t tbody#search').fadeIn('fast');
+
+                                }
+                            },
+                        });
+                        return false;
+                    }
+                });
+                /*end rechercher avancee multicritéres selon sujet et staus*/
+
+
+                /*begin trie up selon id*/
+                $("#idup").click(function(e){
+                    /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                    var value = $("#search").val();
+                    var value3 ="ASC";
+
+                    //    alert(value);
+                    /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                    $.ajax({
+                        /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                        url : "{{ path('search_event') }}",
+                        /* La méthode utilisée pour transférer les données est GET */
+                        type : 'GET',
+                        /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                        data: {
+                            'searchValue' : value,
+                            'orderid': value3
+                        },
+                        /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                        success : function(retour){
+                            if(retour){
+                                $('#t tbody#search').empty();
+                                $.each(JSON.parse(retour), function(i, obj) {
+                                    $('#t tbody#all').hide();
+                                    $('#t tbody#search').append('<tr><td> '+obj.idEvent+'  </td><td>    '+obj.nomEvent+'  </td> <td>'+obj.date+' </td>  <td>'+obj.lieu+' </td>  <td>'+obj.descEvent+' </td> </td>  <td>'+obj.type+' </td>  <td> <a href="/evenement/'+obj.idEvent+'/edit">🖊️</a> </td>   </tr>');
+                                });
+                            }
+                            else
+                            {
+                                $('#t tbody#all').show();
+                                $('#t tbody#search').empty();
+                                $('#t tbody#search').fadeIn('fast');
+                            }
+                        },
+                    });
+                    return false;
+
+                });
+                /*end trie up selon id*/
+
+                /*begin trie down selon id*/
+                $("#iddown").click(function(e){
+                    /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                    var value = $("#search").val();
+                    var value3 ="DESC";
+
+                    //    alert(value);
+                    /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                    $.ajax({
+                        /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                        url : "{{ path('search_event') }}",
+                        /* La méthode utilisée pour transférer les données est GET */
+                        type : 'GET',
+                        /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                        data: {
+                            'searchValue' : value,
+                            'orderid': value3
+                        },
+                        /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                        success : function(retour){
+                            if(retour){
+                                $('#t tbody#search').empty();
+                                $.each(JSON.parse(retour), function(i, obj) {
+                                    $('#t tbody#all').hide();
+                                    $('#t tbody#search').append('<tr><td> '+obj.idEvent+'  </td><td>    '+obj.nomEvent+'  </td> <td>'+obj.date+' </td>  <td>'+obj.lieu+' </td>  <td>'+obj.descEvent+' </td> </td>  <td>'+obj.type+' </td>  <td> <a href="/evenement/'+obj.idEvent+'/edit">🖊️</a> </td>   </tr>');
+                                });
+                            }
+                            else
+                            {
+                                $('#t tbody#all').show();
+                                $('#t tbody#search').empty();
+                                $('#t tbody#search').fadeIn('fast');
+                            }
+                        },
+                    });
+                    return false;
+
+                });
+                /*end trie down selon id*/
+            });
+        </script>
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    {{ form_start(f) }}
+<h1> Modifier Produit </h1>
+<table>
+    <tr>
+        <td>
+
+            {{ form_label(f.nomProd,"nomProd : ") }}
+        </td><td>
+            {{ form_widget(f.nomProd) }}
+        </td>
+        <td>{{ form_errors(f.nomProd) }}</td>
+    </tr>
+    <tr>
+        <td>
+
+            {{ form_label(f.prixProd,"prixProd : ") }}
+        </td><td>
+            {{ form_widget(f.prixProd)}}
+        </td>
+        <td>{{ form_errors(f.prixProd) }}</td>
+    </tr>
+    <tr>
+        <td>
+
+            {{ form_label(f.statusProd,"statusProd : ") }}
+        </td><td>
+            {{ form_widget(f.statusProd)}}
+        </td><td>{{ form_errors(f.statusProd) }}</td>
+    </tr>
+    <tr>
+        <td>
+
+            {{ form_label(f.rateProd,"rateProd : ") }}
+        </td><td>
+            {{ form_widget(f.rateProd)}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            {{ form_label(f.descriptionProd,"descriptionProd : ") }}
+        </td><td>
+            {{ form_widget(f.descriptionProd)}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            {{ form_label(f.categorieProd,"categorieProd : ") }}
+        </td><td>
+            {{ form_widget(f.categorieProd)}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            {{ form_label(f.imgProd,"imgProd : ") }}
+        </td><td>
+            {{ form_widget(f.imgProd)}}
+        </td>
+    </tr>
+</table>
+{{ form_end(f) }}
+
+{%endblock %}
+{%endblock %}

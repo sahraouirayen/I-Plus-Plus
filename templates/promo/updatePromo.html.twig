@@ -1,0 +1,31 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    {{ form_start(formulaire) }}
+    <h1> Modifier Promotion </h1>
+    <table>
+        <tr>
+            <td>
+
+                {{ form_label(formulaire.pourcentPromo,"pourcentPromo : ") }}
+            </td><td>
+                {{ form_widget(formulaire.pourcentPromo) }}
+            </td>
+            <td>{{ form_errors(formulaire.pourcentPromo) }}</td>
+        </tr>
+        <tr>
+            <td>
+
+                {{ form_label(formulaire.dateExp,"dateExp : ") }}
+            </td><td>
+                {{ form_widget(formulaire.dateExp)}}
+            </td>
+            <td>{{ form_errors(formulaire.dateExp) }}</td>
+        </tr>
+
+    </table>
+    {{ form_end(formulaire) }}
+
+{%endblock %}
+{%endblock %}

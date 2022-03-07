@@ -1,0 +1,67 @@
+{% block title %}Actualite index{% endblock %}
+
+{% block body %}
+
+    <head>
+    <h1 align="center" style="color: #e66a02">I++</h1>
+    <hr />
+    </br>
+
+    </head>
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th>titreActualite</th>
+            <th>desciption</th>
+            <th>imageAct</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for actualite in actualites %}
+            <tr>
+                <td>{{ actualite.TitreActualite }}</td>
+                <td>{{ actualite.Description }}</td>
+                <td> {{ actualite.dateAct? actualite.dateAct|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('actualite_show', {'idActualite': actualite.IdActualite}) }}">show</a>
+                    <a href="{{ path('actualite_edit', {'idActualite': actualite.IdActualite}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table width="100%" style="font-family: sans-serif; font-size: 14px;" >
+        <br>
+        <tr>
+            <td>
+                <table width="25%" align="left" style="font-family: sans-serif; font-size: 14px;" >
+
+                </table>
+                <table width="50%" align="left" style="font-family: sans-serif; font-size: 13px; text-align: center;" >
+                    <tr>
+                        <td style="padding: 0px; line-height: 20px;">
+                            <strong>I++</strong>
+                            <br>
+                            ghazzela,ariana soghra
+                            <br>
+                            Tel: +216 25 131 887 | Email: Iplusplus@gmail.com
+                            <br>
+                            Company Registered in Tunisia. Company Reg. 12121212.
+                            <br>
+                            VAT Registration No. 021021021 | ATOL No. 1234
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        <br>
+    </table>
+
+{% endblock %}

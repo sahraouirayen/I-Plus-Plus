@@ -1,0 +1,13 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}New Typereclamations{% endblock %}
+
+{% block body %}
+    {% block content %}
+    <h1>Create new Typereclamations</h1>
+
+    {{ include('typereclamations/_form.html.twig') }}
+
+    <a href="{{ path('app_typereclamations_index') }}">back to list</a>
+{% endblock %}
+{% endblock %}

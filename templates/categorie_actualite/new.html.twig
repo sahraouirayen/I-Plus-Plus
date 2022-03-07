@@ -1,0 +1,18 @@
+{% extends 'back.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}New CategorieActualite{% endblock %}
+
+{% block body %}
+    {% block content %}
+
+    <div class="group-form">
+    <h1>Create new CategorieActualite</h1>
+
+
+    {{ include('categorie_actualite/_form.html.twig') }}
+        <div class="group-form mt-3 ">
+            <a href="{{ path('categorie_actualite_index') }}">back to list</a> </div>
+    </div>
+{% endblock %}
+{% endblock %}

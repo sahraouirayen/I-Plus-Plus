@@ -1,0 +1,77 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+    {% block content %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}    <h1> Ajouter Produit </h1>
+    <table>
+        <tr>
+            <td>
+
+                {{ form_label(form.nomProd,"nomProd : ") }}
+            </td><td>
+                {{ form_widget(form.nomProd) }}
+            </td>
+            <td>{{ form_errors(form.nomProd) }}</td>
+        </tr>
+        <tr>
+            <td>
+
+                {{ form_label(form.prixProd,"prixProd : ") }}
+            </td><td>
+                {{ form_widget(form.prixProd)}}
+            </td>
+            <td>{{ form_errors(form.prixProd) }}</td>
+        </tr>
+        <tr>
+            <td>
+
+                {{ form_label(form.statusProd,"statusProd : ") }}
+            </td><td>
+                {{ form_widget(form.statusProd)}}
+            </td><td>{{ form_errors(form.statusProd) }}</td>
+        </tr>
+        <tr>
+            <td>
+
+                {{ form_label(form.rateProd,"rateProd : ") }}
+            </td><td>
+                {{ form_widget(form.rateProd)}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                {{ form_label(form.descriptionProd,"descriptionProd : ") }}
+            </td><td>
+                {{ form_widget(form.descriptionProd)}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                {{ form_label(form.categorieProd,"categorieProd : ") }}
+            </td><td>
+                {{ form_widget(form.categorieProd)}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                {{ form_label(form.imgProd,"imgProd : ") }}
+            </td><td>
+                {{ form_widget(form.imgProd)}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                {{ form_label(form.idPromo,"idPromo : ") }}
+            </td><td>
+                {{ form_widget(form.idPromo)}}
+            </td>
+        </tr>
+    </table>
+    {{ form_end(form) }}
+
+{% endblock %}
+{% endblock %}

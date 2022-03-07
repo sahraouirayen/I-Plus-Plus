@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+
+<!-- sidebar -->
+
+    <div class=" sidebar pt-5 pt-lg-0">
+        <!-- widget -->
+
+        <!-- widget -->
+        <div class="widget-item">
+            <h4 class="widget-title">Most Vues</h4>
+            <div class="latest-blog">
+                {% for actualite in actualitesvu %}
+                <div class="lb-item">
+                    <div class="lb-thumb set-bg" data-setbg="{{ asset('uploads/'~actualite.imageAct)}}"></div>
+                    <div class="lb-content">
+
+                        <div class="lb-date"> {{ actualite.titreActualite }}</div>
+                        <p>{{ actualite.Description }}</p>
+                        <p>{{ actualite.dateAct ? actualite.dateAct|date('Y-m-d') : '' }}</p>
+                        <p>{{ actualite.Vu }}Vues</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="widget-item">
+            <h4 class="widget-title">Top Liked</h4>
+            <div class="top-comment">
+                {% for actualite in actualiteslike %}
+                <div class="tc-item">
+                    <div class="tc-thumb set-bg" data-setbg="{{ asset('uploads/'~actualite.imageAct)}}"></div>
+                    <div class="tc-content">
+                        <p> {{ actualite.titreActualite}}</p>
+                        <p> {{actualite.RatingAct}}Likes</p>
+                        <div class="tc-date">{{ actualite.dateAct ? actualite.dateAct|date('Y-m-d') : '' }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</div>
+</div>
+</section>
