@@ -1,0 +1,11 @@
+{% extends 'actualite/new.html.twig' %}
+
+{% block title %}New CommentAct{% endblock %}
+
+{% block body %}
+    <h1>Create new CommentAct</h1>
+
+    {{ include('comment_act/_form.html.twig') }}
+
+    <a href="{{ path('comment_act_index') }}">back to list</a>
+{% endblock %}

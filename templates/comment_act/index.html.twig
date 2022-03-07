@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CommentAct index{% endblock %}
+
+{% block body %}
+    <h1>CommentAct index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdComment</th>
+                <th>CommentAct</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment_act in comment_acts %}
+            <tr>
+                <td>{{ comment_act.idComment }}</td>
+                <td>{{ comment_act.commentAct }}</td>
+                <td>
+                    <a href="{{ path('comment_act_show', {'idComment': comment_act.idComment}) }}">show</a>
+                    <a href="{{ path('comment_act_edit', {'idComment': comment_act.idComment}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('comment_act_new') }}">Create new</a>
+{% endblock %}

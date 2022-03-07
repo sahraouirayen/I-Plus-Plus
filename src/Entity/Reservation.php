@@ -22,16 +22,6 @@ class Reservation
     private $idReservation;
 
     /**
-     * @var \Evenement
-     *
-     * @ORM\ManyToOne(targetEntity="Evenement")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_evenement", referencedColumnName="id_event")
-     * })
-     */
-    private $idEvenement;
-
-    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -41,21 +31,19 @@ class Reservation
      */
     private $idUser;
 
+    /**
+     * @var \Evenement
+     *
+     * @ORM\ManyToOne(targetEntity="Evenement")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_evenement", referencedColumnName="id_event")
+     * })
+     */
+    private $idEvenement;
+
     public function getIdReservation(): ?int
     {
         return $this->idReservation;
-    }
-
-    public function getIdEvenement(): ?Evenement
-    {
-        return $this->idEvenement;
-    }
-
-    public function setIdEvenement(?Evenement $idEvenement): self
-    {
-        $this->idEvenement = $idEvenement;
-
-        return $this;
     }
 
     public function getIdUser(): ?User
@@ -66,6 +54,18 @@ class Reservation
     public function setIdUser(?User $idUser): self
     {
         $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    public function getIdEvenement(): ?Evenement
+    {
+        return $this->idEvenement;
+    }
+
+    public function setIdEvenement(?Evenement $idEvenement): self
+    {
+        $this->idEvenement = $idEvenement;
 
         return $this;
     }

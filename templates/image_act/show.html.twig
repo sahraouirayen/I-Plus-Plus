@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ImageAct{% endblock %}
+
+{% block body %}
+    <h1>ImageAct</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdImage</th>
+                <td>{{ image_act.idImage }}</td>
+            </tr>
+            <tr>
+                <th>ImageAct</th>
+                <td>{{ image_act.imageAct }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('image_act_index') }}">back to list</a>
+
+    <a href="{{ path('image_act_edit', {'idImage': image_act.idImage}) }}">edit</a>
+
+    {{ include('image_act/_delete_form.html.twig') }}
+{% endblock %}

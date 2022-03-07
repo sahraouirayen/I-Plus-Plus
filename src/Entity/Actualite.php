@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Actualite
  *
  * @ORM\Table(name="actualite", indexes={@ORM\Index(name="categorie", columns={"categorie"})})
- * @ORM\Entity(repositoryClass="App\Repository\ActualiteRepository")
+ * @ORM\Entity
  */
 class Actualite
 {
@@ -36,6 +36,34 @@ class Actualite
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="etendu", type="string", length=255, nullable=false)
+     */
+    private $etendu;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Date_act", type="date", nullable=false)
+     */
+    private $dateAct;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_act", type="string", length=255, nullable=false)
+     */
+    private $imageAct;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="rating_act", type="integer", nullable=false)
+     */
+    private $ratingAct;
+
+    /**
      * @var \CategorieActualite
      *
      * @ORM\ManyToOne(targetEntity="CategorieActualite")
@@ -44,6 +72,15 @@ class Actualite
      * })
      */
     private $categorie;
+
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="vu", type="integer", nullable=false)
+     */
+    private $vu;
 
     public function getIdActualite(): ?int
     {
@@ -74,6 +111,54 @@ class Actualite
         return $this;
     }
 
+    public function getEtendu(): ?string
+    {
+        return $this->etendu;
+    }
+
+    public function setEtendu(string $etendu): self
+    {
+        $this->etendu = $etendu;
+
+        return $this;
+    }
+
+    public function getDateAct(): ?\DateTimeInterface
+    {
+        return $this->dateAct;
+    }
+
+    public function setDateAct(\DateTimeInterface $dateAct): self
+    {
+        $this->dateAct = $dateAct;
+
+        return $this;
+    }
+
+    public function getImageAct(): ?string
+    {
+        return $this->imageAct;
+    }
+
+    public function setImageAct(string $imageAct): self
+    {
+        $this->imageAct = $imageAct;
+
+        return $this;
+    }
+
+    public function getRatingAct(): ?int
+    {
+        return $this->ratingAct;
+    }
+
+    public function setRatingAct(int $ratingAct): self
+    {
+        $this->ratingAct = $ratingAct;
+
+        return $this;
+    }
+
     public function getCategorie(): ?CategorieActualite
     {
         return $this->categorie;
@@ -84,6 +169,18 @@ class Actualite
         $this->categorie = $categorie;
 
         return $this;
+    }
+
+
+    public function getVu(): ?int
+    {
+        return $this->vu;
+    }
+
+
+    public function setVu(int $vu): void
+    {
+        $this->vu = $vu;
     }
 
 

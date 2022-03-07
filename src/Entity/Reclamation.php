@@ -29,16 +29,6 @@ class Reclamation
     private $sujetRec;
 
     /**
-     * @var \User
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id_user")
-     * })
-     */
-    private $user;
-
-    /**
      * @var \TypeReclamation
      *
      * @ORM\ManyToOne(targetEntity="TypeReclamation")
@@ -47,6 +37,16 @@ class Reclamation
      * })
      */
     private $niveau;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id_user")
+     * })
+     */
+    private $user;
 
     public function getIdRec(): ?int
     {
@@ -65,18 +65,6 @@ class Reclamation
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getNiveau(): ?TypeReclamation
     {
         return $this->niveau;
@@ -85,6 +73,18 @@ class Reclamation
     public function setNiveau(?TypeReclamation $niveau): self
     {
         $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -57,16 +57,6 @@ class Produit
     private $description;
 
     /**
-     * @var \CategorieProduit
-     *
-     * @ORM\ManyToOne(targetEntity="CategorieProduit")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="categorie", referencedColumnName="id_cat_prod")
-     * })
-     */
-    private $categorie;
-
-    /**
      * @var \Promotion
      *
      * @ORM\ManyToOne(targetEntity="Promotion")
@@ -75,6 +65,16 @@ class Produit
      * })
      */
     private $promotion;
+
+    /**
+     * @var \CategorieProduit
+     *
+     * @ORM\ManyToOne(targetEntity="CategorieProduit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="categorie", referencedColumnName="id_cat_prod")
+     * })
+     */
+    private $categorie;
 
     public function getIdProduit(): ?int
     {
@@ -141,18 +141,6 @@ class Produit
         return $this;
     }
 
-    public function getCategorie(): ?CategorieProduit
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(?CategorieProduit $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
     public function getPromotion(): ?Promotion
     {
         return $this->promotion;
@@ -161,6 +149,18 @@ class Produit
     public function setPromotion(?Promotion $promotion): self
     {
         $this->promotion = $promotion;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?CategorieProduit
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?CategorieProduit $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

@@ -1,37 +1,104 @@
-{% extends 'base.html.twig' %}
+{% extends 'act/index.html.twig' %}
 
-{% block title %}Actualite index{% endblock %}
+{% block title %}Actualite{% endblock %}
 
+{% set colors=["#4b0082	","#dc143c","#0000FF","#FFFF00"] %}
 {% block body %}
-    <h1>Actualite index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>IdActualite</th>
-                <th>TitreActualite</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for actualite in actualites %}
-            <tr>
-                <td>{{ actualite.idActualite }}</td>
-                <td>{{ actualite.titreActualite }}</td>
-                <td>{{ actualite.description }}</td>
-                <td>
-                    <a href="{{ path('actualite_show', {'idActualite': actualite.idActualite}) }}">show</a>
-                    <a href="{{ path('actualite_edit', {'idActualite': actualite.idActualite}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="latest-news-section">
+        <div class="ln-title">Latest News</div>
+        <div class="news-ticker">
+            <div class="news-ticker-contant">
 
-    <a href="{{ path('actualite_new') }}">Create new</a>
+                {% for actualite in actualites %}
+                    <div class="nt-item"><span  style="background:{{random(colors)}}">{{ actualite.categorie.NomCatActualite }}</span>{{ actualite.description }} </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <section class="page-section recent-game-page spad">
+        <h2>Last added</h2>
+        <div class="row">
+            <div class="col-8">
+                <a href="{{ path('indextri') }}" class="btn btn-primary"><img src="{{ asset('img/icons/desc.png')}}" alt="" width="24" height="24"></a>
+                <div class="widget-item">
+                    <form class="search-widget" action="{{ path('searchact') }}">
+                        <label>
+                            <input type="text" placeholder="Search" name="search">
+                        </label>
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="container-fluid">
+
+                    <div class="row">
+
+
+
+                        {% for actualite in actualites %}
+
+<a href="{{ path('actualite_front',{id:actualite.idActualite}) }}">
+
+                            <div class="col-6">
+                                <div class="recent-game-item">
+                                    <div class="rgi-thumb set-bg" data-setbg="{{ asset('uploads/'~actualite.imageAct)}}">
+                                        <div class="cata new" style="background:{{random(colors)}}">{{ actualite.categorie.NomCatActualite }}</div>
+                                    </div>
+                                    <div class="rgi-content">
+                                        <h5>{{ actualite.titreActualite }}</h5>
+                                        <p> {{ actualite.description }}</p>
+                                        <a href="{{ asset('#')}}" class="comment">{{actualite.Vu}}vues</a>
+                                        <div class="rgi-extra">
+
+                                            <a href="{{path('like',{id:actualite.idActualite})}}"> <div class="rgi-star" ><img src="{{ asset('img/icons/like.png')}}" alt=""></div></a>
+                                           <a href="{{path('dislike',{id:actualite.idActualite})}}"><div class="rgi-heart"><img src="{{ asset('img/icons/dislike.png')}}" alt=""></div></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+</a>
+                        {% else %}
+
+                            <td colspan="4">no records found</td>
+
+                        {% endfor %}
+
+
+                    </div>
+                    <div class="pagination-item">
+
+                        <span>{{ knp_pagination_render(actualites) }}</span>
+
+                    </div>
+                    <div>
+                        Nombre d'actualite: {{ actualites.getTotalItemCount }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="container">
+                    <form method="post" action="{{ path('filtreact') }}">
+                        <h2>Filter By Categorie</h2>
+                        <h6 style="color: #fffffc">filtrer par categorie :</h6>
+                        {% for categorie in categories %}
+                            <div class="bp-text">
+
+                                <input type="checkbox" name="cat[]" value="{{ categorie.IdCatActualite }}" >
+                                <label style="color: #e66a02">{{ categorie.NomCatActualite }}</label>
+
+
+                            </div>
+
+                        {% endfor %}
+
+                        <button type="submit" class="btn btn-primary" ><img src="{{ asset('img/icons/filterr.png')}}" alt="" width="24" height="24"></button>
+                    </form>
+                    {% include 'act/side.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends 'back.html.twig' %}
+{% block title %}Actualite index{% endblock %}
+
+{% block body %}
+    <h1>Actualite index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th>titreActualite</th>
+            <th>desciption</th>
+            <th>imageAct</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for actualite in actualites %}
+            <tr>
+                <td>{{ actualite.TitreActualite }}</td>
+                <td>{{ actualite.Description }}</td>
+                <td> <img src="{{ asset('uploads/'~actualite.imageAct) }}" ></td>
+                <td>
+                    <a href="{{ path('actualite_show', {'idActualite': actualite.IdActualite}) }}">show</a>
+                    <a href="{{ path('actualite_edit', {'idActualite': actualite.IdActualite}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        <a href="{{ path('pdfact') }}">pdf</a>
+        </tbody>
+    </table>
+
+{% endblock %}

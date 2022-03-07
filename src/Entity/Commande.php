@@ -22,16 +22,6 @@ class Commande
     private $idCommande;
 
     /**
-     * @var \LigneCommande
-     *
-     * @ORM\ManyToOne(targetEntity="LigneCommande")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_ligne", referencedColumnName="id_ligne")
-     * })
-     */
-    private $idLigne;
-
-    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -41,21 +31,19 @@ class Commande
      */
     private $idUser;
 
+    /**
+     * @var \LigneCommande
+     *
+     * @ORM\ManyToOne(targetEntity="LigneCommande")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_ligne", referencedColumnName="id_ligne")
+     * })
+     */
+    private $idLigne;
+
     public function getIdCommande(): ?int
     {
         return $this->idCommande;
-    }
-
-    public function getIdLigne(): ?LigneCommande
-    {
-        return $this->idLigne;
-    }
-
-    public function setIdLigne(?LigneCommande $idLigne): self
-    {
-        $this->idLigne = $idLigne;
-
-        return $this;
     }
 
     public function getIdUser(): ?User
@@ -66,6 +54,18 @@ class Commande
     public function setIdUser(?User $idUser): self
     {
         $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    public function getIdLigne(): ?LigneCommande
+    {
+        return $this->idLigne;
+    }
+
+    public function setIdLigne(?LigneCommande $idLigne): self
+    {
+        $this->idLigne = $idLigne;
 
         return $this;
     }
