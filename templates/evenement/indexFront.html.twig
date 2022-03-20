@@ -40,8 +40,7 @@
                     <td>{{ evenement.type }}</td>
 
                     <td>
-                        <a class="btn btn-primary" href="{{ path('evenement_show', {'idEvent': evenement.idEvent}) }}">show</a>
-                        <a class="btn btn-success" href="{{ path('app_reservation_new', {'idevent': evenement.idEvent,'idUser':app.user.idUser}) }}">Participer</a>
+                        <a class="btn btn-primary" href="{{ path('evenement_show1', {'idEvent': evenement.idEvent}) }}">show</a>
                     </td>
                 </tr>
             {% else %}
@@ -59,6 +58,7 @@
 
 
         </table>
+
 
 
 

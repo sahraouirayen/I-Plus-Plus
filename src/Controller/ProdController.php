@@ -42,7 +42,7 @@ class ProdController extends AbstractController
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route ("/ajouterProd",name="ajouterProd")
+     * @Route ("/admin/ajouterProd",name="ajouterProd")
      */
 
     public function AjouterProduit(Request $request,KernelInterface $kernel){
@@ -74,12 +74,23 @@ class ProdController extends AbstractController
     /**
      * @param ProdRepository $repository
      * @return Response
-     * @Route ("/afficherProd",name="afficherProd")
+     * @Route ("/admin/afficherProd",name="afficherProd")
      */
 
     public function AfficherProduit(ProdRepository $repository){
         $produit=$repository->findAll();
         return $this->render("prod/tableProd.html.twig",['tour'=>$produit]);
+
+    }
+    /**
+     * @param ProdRepository $repository
+     * @return Response
+     * @Route ("/afficherProdfront",name="afficherProdfront")
+     */
+
+    public function AfficherProduitfront(ProdRepository $repository){
+        $produit=$repository->findAll();
+        return $this->render("prod/produitFront.html.twig",['tour'=>$produit]);
 
     }
 
@@ -98,7 +109,7 @@ class ProdController extends AbstractController
      * @param $id
      * @param ProdRepository $repository
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @Route ("/supprimer/{id}",name="supprimer")
+     * @Route ("/admin/supprimer/{id}",name="supprimer")
      */
     public function Delete($id,ProdRepository $repository){
         $produit=$repository->find($id);
@@ -113,7 +124,7 @@ class ProdController extends AbstractController
      * @param ProdRepository $repository
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route ("/modifier/{id}",name="modifier")
+     * @Route ("/admin/modifier/{id}",name="modifier")
      */
     public function Update($id,ProdRepository $repository,Request $request){
         $produit=$repository->find($id);

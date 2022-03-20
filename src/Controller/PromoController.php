@@ -33,7 +33,7 @@ class PromoController extends AbstractController
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route ("/ajouterPromo",name="ajouterPromo")
+     * @Route ("/admin/ajouterPromo",name="ajouterPromo")
      */
     public function AjouterPromotion(Request $request){
         $Promotion = new Promo();
@@ -53,7 +53,7 @@ class PromoController extends AbstractController
     /**
      * @param PromoRepository $repository
      * @return Response
-     * @Route ("/afficherPromo",name="afficherPromo")
+     * @Route ("/admin/afficherPromo",name="afficherPromo")
      */
 
     public function AfficherPromotion(PromoRepository $repository){
@@ -66,7 +66,7 @@ class PromoController extends AbstractController
      * @param $id
      * @param PromoRepository $repository
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @Route ("/delete/{id}",name="delete")
+     * @Route ("/admin/delete/{id}",name="delete")
      */
     public function Delete($id,PromoRepository $repository){
         $Promotion=$repository->find($id);
@@ -81,7 +81,7 @@ class PromoController extends AbstractController
      * @param PromoRepository $repository
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route ("/update/{id}",name="update")
+     * @Route ("/admin/update/{id}",name="update")
      */
     public function Update($id,PromoRepository $repository,Request $request){
         $Promotion=$repository->find($id);

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{% block content %}
+    <section class="hero-section">
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="img/slider-1.jpg">
+                <div class="hs-text">
+                    <div class="container">
+                        <h2>Welcome To our <span>Games</span> Shop</h2>
+
+                    </div>
+                </div>
+            </div>
+    </section>
+            <section class="review-section spad set-bg" data-setbg="img/review-bg.png">
+                <div class="container">
+
+                    <div class="row">
+                        {% for p in tour %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="review-item">
+                                <div class="review-cover set-bg" data-setbg="/uploads/images/{{ p.imgProd }}">
+                                    <div class="score yellow">{{ p.rateProd }}</div>
+                                </div>
+                                <div class="review-text">
+                                    <h5>{{p.nomProd}}</h5>
+                                    <p>{{ p.descriptionProd }}</p>
+                                    <h6><span class="mr-3">{{ p.prixProd }}DT</span><span>{{ p.categorieProd }}</span></h6>
+                                    <button class="btn btn-danger"><a class="text-white" href="/cart/add/{{ p.id }}">Acheter</a> </button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+
+                    </div>
+                </div>
+            </section>
+
+
+        </div>
+
+
+{% endblock %}
+{% endblock %}

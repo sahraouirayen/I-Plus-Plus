@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Actualite
@@ -25,6 +27,7 @@ class Actualite
      * @var string
      *
      * @ORM\Column(name="titre_actualite", type="string", length=30, nullable=false)
+     * @Assert\NotBlank(message="le titre est requis")
      */
     private $titreActualite;
 
@@ -32,6 +35,7 @@ class Actualite
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="la description est requis")
      */
     private $description;
 
@@ -39,6 +43,8 @@ class Actualite
      * @var string
      *
      * @ORM\Column(name="etendu", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="la description  etendu est requis")
+
      */
     private $etendu;
 
@@ -53,6 +59,8 @@ class Actualite
      * @var string
      *
      * @ORM\Column(name="image_act", type="string", length=255, nullable=false)
+     *
+
      */
     private $imageAct;
 
@@ -67,6 +75,8 @@ class Actualite
      * @var \CategorieActualite
      *
      * @ORM\ManyToOne(targetEntity="CategorieActualite")
+     * @Assert\NotBlank(message="la categorie est requis")
+
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="categorie", referencedColumnName="id_cat_actualite")
      * })

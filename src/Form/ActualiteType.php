@@ -23,12 +23,7 @@ class ActualiteType extends AbstractType
             ->add('titreActualite')
             ->add('description')
             ->add('etendu')
-        ->add('DateAct', DateType::class,[
-            'required' => true,
-            'label' => 'Date',
-            'widget' => "single_text"
 
-        ])
             ->add('imageAct', FileType::class,['label'=>false,'multiple'=>true,'mapped'=>false,'required'=>false])
 
             ->add('categorie',EntityType::class,['class'=>CategorieActualite::class,'choice_label'=>'nomCatActualite','multiple'=>false,'expanded'=>true])

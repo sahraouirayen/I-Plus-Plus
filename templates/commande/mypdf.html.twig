@@ -22,7 +22,7 @@
     {% for ligne in lignesCommandes %}
         <tr class="w-100">
             <td>{{ ligne.commande.id }}</td>
-            <td class="text-end">{{ ligne.Produit.title }}</td>
+            <td class="text-end">{{ ligne.Produit.nomProd }}</td>
             <td class="text-end">{{ ligne.quantite }}</td>
             <td class="text-end">{{ ligne.price }}</td>
 

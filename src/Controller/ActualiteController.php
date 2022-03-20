@@ -7,6 +7,7 @@ use App\Entity\ImageAct;
 use App\Form\ActualiteType;
 use App\Repository\ActualiteRepository;
 use App\Repository\CategorieActualiteRepository;
+use App\Services\QrcodeService;
 use Doctrine\ORM\EntityManagerInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -308,11 +309,14 @@ class ActualiteController extends AbstractController
     /**
      * @Route("/new", name="actualite_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,QrcodeService $qrcodeService): Response
     {
+        $qrcode=null;
         $actualite = new Actualite();
         $form = $this->createForm(ActualiteType::class, $actualite);
         $form->handleRequest($request);
+        $objDateTime = new \DateTime('NOW');
+        $dateString = $objDateTime->format('d-m-Y H:i:s');
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageAct = $form->get('imageAct')->getData();
@@ -326,10 +330,10 @@ class ActualiteController extends AbstractController
                 $image->setImageAct($file);
                 $actualite->setimageAct($file);
             }
+            $qrcode=$qrcodeService->qrcode2("http://127.0.0.1:8001/actualite",$form->get('titreActualite')->getData());
 
             $entityManager->persist($actualite);
             $entityManager->flush();
-
             return $this->redirectToRoute('actualite_indexBack', [], Response::HTTP_SEE_OTHER);
         }
 

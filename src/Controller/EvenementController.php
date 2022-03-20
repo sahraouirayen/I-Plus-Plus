@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Evenement;
 
+use App\Entity\Reservation;
 use App\Repository\EvenementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -145,6 +146,21 @@ class EvenementController extends AbstractController
     {
         return $this->render('evenement/show.html.twig', [
             'evenement' => $evenement,
+        ]);
+    }
+    /**
+     * @Route("/show/{idEvent}", name="evenement_show1", methods={"GET"})
+     */
+    public function showFront(Evenement $evenement): Response
+    {
+        $res=false;
+        $reser=$this->getDoctrine()->getRepository(Reservation::class)->findBy(['idUser'=>$this->getUser()]);
+        $resvevent=$this->getDoctrine()->getRepository(Reservation::class)->findBy(['idEvenement'=>$evenement->getIdEvent()]);
+        if($reser==$resvevent){
+            $res=true;
+        }
+        return $this->render('evenement/showFront.html.twig', [
+            'evenement' => $evenement,'res'=>$res
         ]);
     }
 

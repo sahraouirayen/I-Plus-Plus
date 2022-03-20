@@ -27,7 +27,7 @@ class Prod
     private $nomProd;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", length=255)
     *@Assert\NotBlank(message="champs is required")
       */
     private $prixProd;
@@ -65,6 +65,11 @@ class Prod
      */
     private $idPromo;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $quantite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -82,12 +87,12 @@ class Prod
         return $this;
     }
 
-    public function getPrixProd(): ?string
+    public function getPrixProd(): ?int
     {
         return $this->prixProd;
     }
 
-    public function setPrixProd(string $prixProd): self
+    public function setPrixProd(int $prixProd): self
     {
         $this->prixProd = $prixProd;
 
@@ -162,6 +167,18 @@ class Prod
     public function setIdPromo(?Promo $idPromo): self
     {
         $this->idPromo = $idPromo;
+
+        return $this;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(?int $quantite): self
+    {
+        $this->quantite = $quantite;
 
         return $this;
     }

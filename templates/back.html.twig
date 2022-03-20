@@ -29,7 +29,7 @@
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="{{ asset('index.html')}}"><img src="{{ asset('assets/images/logo.svg')}}" alt="logo" /></a>
+            <a class="sidebar-brand brand-logo" href="{{ asset('index.html')}}"><img src="{{ asset('img/footer-logo.png')}}" alt="logo" /></a>
             <a class="sidebar-brand brand-logo-mini" href="{{ asset('index.html')}}"><img src="{{ asset('assets/images/logo-mini.svg')}}" alt="logo" /></a>
         </div>
         <ul class="nav">
@@ -123,8 +123,8 @@
                 </a>
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/ajouterProd">ajouter des produits</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/afficherProd">Liste des produits</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/admin/ajouterProd">ajouter des produits</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/admin/afficherProd">Liste des produits</a></li>
 
                     </ul>
                 </div>
@@ -139,8 +139,8 @@
                 </a>
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/ajouterPromo">ajouter des promotion</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/afficherPromo">Liste des promotion</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/admin/ajouterPromo">ajouter des promotion</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/admin/afficherPromo">Liste des promotion</a></li>
 
                     </ul>
                 </div>
@@ -160,6 +160,13 @@
               </span>
                     <span class="menu-title">PDF Liste des Produits</span>
                 </a>
+            </li> <li class="nav-item menu-items">
+                <a class="nav-link" href="/QR">
+              <span class="menu-icon">
+<i class="fa fa-qrcode" aria-hidden="true"></i>
+              </span>
+                    <span class="menu-title">QR Code</span>
+                </a>
             </li>
             <li class="nav-item menu-items">
                 <a class="nav-link" href="/reclamation">
@@ -167,6 +174,14 @@
                <i class="fa fa-id-card-o" aria-hidden="true"></i>
               </span>
                     <span class="menu-title">Reclamations</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/typereclamations">
+              <span class="menu-icon">
+               <i class="fa fa-id-card-o" aria-hidden="true"></i>
+              </span>
+                    <span class="menu-title">Type Reclamations</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
@@ -186,31 +201,14 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" data-toggle="collapse" href="{{ asset('#auth')}}" aria-expanded="false" aria-controls="auth">
+                <a class="nav-link" href="/commande">
               <span class="menu-icon">
-                <i class="mdi mdi-security"></i>
-              </span>
-                    <span class="menu-title">User Pages</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="auth">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/samples/blank-page.html')}}"> Blank Page </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/samples/error-404.html')}}"> 404 </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/samples/error-500.html')}}"> 500 </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/samples/login.html')}}"> Login </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/samples/register.html')}}"> Register </a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="{{ asset('http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html')}}">
-              <span class="menu-icon">
-                <i class="mdi mdi-file-document-box"></i>
-              </span>
-                    <span class="menu-title">Documentation</span>
+<i class="fa fa-cart-plus" aria-hidden="true"></i>              </span>
+                    <span class="menu-title">Commande</span>
                 </a>
             </li>
+
+
         </ul>
     </nav>
     <!-- partial -->
@@ -284,39 +282,17 @@
                             <span class="count bg-success"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-                            <h6 class="p-3 mb-0">Messages</h6>
+                            <h6 class="p-3 mb-0">Reclamation</h6>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="{{ asset('assets/images/faces/face4.jpg')}}" alt="image" class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-                                    <p class="text-muted mb-0"> 1 Minutes ago </p>
+
+                                <div class="preview-item-content rec-text">
+
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="{{ asset('assets/images/faces/face2.jpg')}}" alt="image" class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-                                    <p class="text-muted mb-0"> 15 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <img src="{{ asset('assets/images/faces/face3.jpg')}}" alt="image" class="rounded-circle profile-pic">
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-                                    <p class="text-muted mb-0"> 18 Minutes ago </p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <p class="p-3 mb-0 text-center">4 new messages</p>
+
+
                         </div>
                     </li>
                     <li class="nav-item dropdown border-left">
@@ -1079,9 +1055,12 @@
 <script>
     console.log("event")
     document.addEventListener('DOMContentLoaded',function (){
-        let url = new URL('https://127.0.0.1:8001/.well-known/mercure')
-        url.searchParams.append('topic','/home')
-        const eventSource = new EventSource(url, {withCredentials: true});
+        let url1 = new URL('https://127.0.0.1:8001/.well-known/mercure')
+        let url2 = new URL('https://127.0.0.1:8001/.well-known/mercure')
+        url1.searchParams.append('topic','/home')
+        url2.searchParams.append('topic','/rec')
+        const eventSource = new EventSource(url1, {withCredentials: true});
+        const eventSource1 = new EventSource(url2, {withCredentials: true});
         var data
         eventSource.onmessage=(event)=>{
             console.log(event.data)
@@ -1096,6 +1075,24 @@
             tag.appendChild(text);
             tag2.appendChild(text2)
             var element = document.getElementsByClassName("user-notif-text");
+            element[0].appendChild(tag);
+            element[0].appendChild(tag2);
+
+
+        }
+        eventSource1.onmessage=(event)=>{
+            console.log(event.data)
+
+            data = JSON.parse(event.data)
+            console.log(data[0])
+            var tag = document.createElement("p");
+            var tag2 = document.createElement("p");
+            tag2.classList.add("text-muted")
+            var text = document.createTextNode(data[0]);
+            var text2=document.createTextNode(data[1])
+            tag.appendChild(text);
+            tag2.appendChild(text2)
+            var element = document.getElementsByClassName("rec-text");
             element[0].appendChild(tag);
             element[0].appendChild(tag2);
 

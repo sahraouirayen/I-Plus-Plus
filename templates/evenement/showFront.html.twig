@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+    <style>
+        p{
+            font-size: 20px !important;
+        }
+    </style>
+    {% block content %}
+       <div class="container">
+           <div class="card mb-3">
+               <img class="card-img-top" src="{{ asset('img/recent-game-bg.png') }}" alt="Card image cap">
+               <div class="card-body">
+                   <h5 class="card-title">Nom de L'évenement :{{ evenement.nomEvent }}</h5>
+                   <p >Date : {{ evenement.date ? evenement.date|date('Y-m-d') : '' }}</p>
+                   <p >Description : {{ evenement.descEvent }}</p>
+                   <p >Lieu : {{ evenement.lieu }}</p>
+                   <a class="btn btn-success" href="{{ path('app_reservation_new', {'idevent': evenement.idEvent,'idUser':app.user.idUser}) }}">{% if res %}Participé deja{% else %}Reserver{% endif %}</a>
+                   {% if res %}
+                       <a class="btn btn-danger" href="{{ path('app_reservation_new', {'idevent': evenement.idEvent,'idUser':app.user.idUser}) }}">Annuler</a>
+
+                   {% endif %}
+
+               </div>
+           </div>
+       </div>
+
+    {% endblock %}
+{% endblock %}

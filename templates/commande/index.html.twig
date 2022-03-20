@@ -10,6 +10,11 @@
         <a href="{{path("listcommandes")}}" class="btn btn-success"> imprimer
             <i class="bi bi-cart-x"></i>
         </a>
+        <form method="get" class=" d-flex justify-content-end">
+            <input type="text" placeholder="id" style="width: 200px" class="form-control p_input mr-2" name="id"/>
+
+            <button style="background-color: #FFB320 ; color: white" class="btn" type="submit">Recherche</button>
+        </form>
         <table class="table">
             <thead>
             <tr>
@@ -25,7 +30,7 @@
             {% for ligne in lignesCommandes %}
                 <tr class="w-100">
                         <td>{{ ligne.commande.id }}</td>
-                        <td class="text-end">{{ ligne.Produit.title }}</td>
+                        <td class="text-end">{{ ligne.Produit.nomProd }}</td>
                         <td class="text-end">{{ ligne.quantite }}</td>
                         <td class="text-end">{{ ligne.price }}</td>
 

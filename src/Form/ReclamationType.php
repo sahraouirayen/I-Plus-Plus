@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Reclamation;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,7 +17,7 @@ class ReclamationType extends AbstractType
     {
         $builder
             ->add('sujet_rec')
-            ->add('user_id')
+            ->add('user_id',HiddenType::class)
             ->add('enregistrer',SubmitType::class)
             ->add('typereclamations')
             ->add('niveau', ChoiceType::class, [

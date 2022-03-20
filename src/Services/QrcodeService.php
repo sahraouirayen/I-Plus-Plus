@@ -20,7 +20,39 @@ class QrcodeService
     {
         $this->builder = $builder;
     }
+    public function qrcode2($query,$qr)
+    {
 
+
+        $objDateTime = new \DateTime('NOW');
+        $dateString = $objDateTime->format('d-m-Y H:i:s');
+
+        $path = dirname(__DIR__, 2).'/public/';
+
+        // set qrcode
+        $result = $this->builder
+            ->data($query)
+            ->encoding(new Encoding('UTF-8'))
+            ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
+            ->size(400)
+            ->margin(10)
+            ->labelText($dateString)
+            ->labelAlignment(new LabelAlignmentCenter())
+            ->labelMargin(new Margin(15, 5, 5, 5))
+            ->logoPath($path.'img/logo.png')
+            ->logoResizeToWidth('100')
+            ->logoResizeToHeight('100')
+            ->backgroundColor(new Color(187, 165, 204))
+            ->build()
+        ;
+
+        //generate name
+        $namePng = $qr. '.png';
+        //Save img png
+        $result->saveToFile($path.'qr-code/'.$namePng);
+
+        return $result->getDataUri();
+    }
     public function qrcode($query)
     {
         $url = 'https://www.google.com/search?q=';

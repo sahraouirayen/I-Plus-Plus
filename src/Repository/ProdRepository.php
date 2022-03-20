@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Prod;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 
 /**
  * @method Prod|null find($id, $lockMode = null, $lockVersion = null)
@@ -68,5 +70,28 @@ class ProdRepository extends ServiceEntityRepository
             ->setMaxResults(1);
         return $query->getQuery()->getSingleResult();
 
+    }
+    /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function add(Prod $entity, bool $flush = true): void
+    {
+        $this->_em->persist($entity);
+        if ($flush) {
+            $this->_em->flush();
+        }
+    }
+
+    /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function remove(Prod $entity, bool $flush = true): void
+    {
+        $this->_em->remove($entity);
+        if ($flush) {
+            $this->_em->flush();
+        }
     }
 }

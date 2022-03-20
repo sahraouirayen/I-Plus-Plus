@@ -9,6 +9,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mercure\PublisherInterface;
+use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -50,25 +52,31 @@ class ReclamationController extends AbstractController
     /**
      * @Route("/new", name="reclamation_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,PublisherInterface $publisher): Response
     {
         $reclamation = new Reclamation();
         $form = $this->createForm(ReclamationType::class, $reclamation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $update = new Update(
+                "/rec",
+                json_encode([$form->get("sujet_rec")->getData(),$form->get("typereclamations")->getData()])
+
+            );
+            $publisher($update);
             $entityManager->persist($reclamation);
             $entityManager->flush();
 
 
-            $sid = "AC1a089fe9379ec0c1d0bce40ea126d0fd"; // Your Account SID from www.twilio.com/console
-            $token = "795132b6a9d6ec3a1ed3b610a548dd84"; // Your Auth Token from www.twilio.com/console
+            $sid = "AC7eb81297eea8b20a43ac82e6eb261ef7"; // Your Account SID from www.twilio.com/console
+            $token = "19bce2fbc6b967ebf2e157a3f8dade3f"; // Your Auth Token from www.twilio.com/console
             
             $client = new Client($sid, $token);
              $message = $client->messages 
             ->create("+21625058640", // to 
                      array(  
-                         "messagingServiceSid" => "MG2ce7c477daa3dd9b0284211cd90c32cf",      
+                         "messagingServiceSid" => "MG60a0045235be149283a9ea017d5e0a4f",
                          "body" => "You reclamation was sended to the admin " 
                      ) 
             ); 

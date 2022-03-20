@@ -21,10 +21,10 @@
             <tbody class="w-100">
             {% for element in dataPanier %}
                 <tr class="w-100">
-                    <td>{{ element.produit.title }}</td>
-                    <td class="text-end">{{ element.produit.price }} €</td>
+                    <td>{{ element.produit.nomProd }}</td>
+                    <td class="text-end">{{ element.produit.prixProd }} €</td>
                     <td>{{ element.quantite }}</td>
-                    <td class="text-end">{{ element.quantite * element.produit.price }} €</td>
+                    <td class="text-end">{{ element.quantite * element.produit.prixProd }} €</td>
                     <td>
                         <a href="{{path("cart_add", {id: element.produit.id})}}" class="btn btn-success">+1
                             <i class="bi bi-cart-plus"></i>

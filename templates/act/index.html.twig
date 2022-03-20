@@ -95,12 +95,13 @@
             <nav class="main-menu">
                 <ul>
                     <li><a href="{{ asset('new')}}">Home</a></li>
-                    <li><a href="{{ asset('shop')}}">Boutique</a></li>
-                    <li><a href="{{ asset('act')}}">Actualite</a></li>
-                    <li><a href="{{ asset('forum')}}">Forums</a></li>
-                    <li><a href="{{ asset('act')}}">Evenements</a></li>
-                    <li><a href="{{ asset('contact')}}">Reclamation</a></li>
-                    <li><a href="{{ asset('contact')}}">Contact</a></li>
+                    <li><a href="/afficherProdfront">Boutique</a></li>
+                    <li><a href="/actualite">Actualite</a></li>
+                    <li><a href="/evenement">Evenements</a></li>
+                    {% if app.user %}
+                        <li><a href="/reclamation/new">Reclamation</a></li>
+                    {% endif %}
+                    <li><a href="/cart">Panier</a></li>
                 </ul>
             </nav>
         </div>
