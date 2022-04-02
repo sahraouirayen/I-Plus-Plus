@@ -4,8 +4,9 @@ namespace App\Entity;
 
 use App\Repository\ProdRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
- use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ProdRepository::class)
@@ -16,59 +17,70 @@ class Prod
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:read")
+
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-      * @Assert\NotBlank(message="champs is required")
+     * @Assert\NotBlank(message="champs is required")
+     *@Groups("post:read")
 
      */
     private $nomProd;
 
     /**
-     * @ORM\Column(type="integer", length=255)
-    *@Assert\NotBlank(message="champs is required")
-      */
+     * @ORM\Column(type="string", length=255)
+     *@Assert\NotBlank(message="champs is required")
+     *@Groups("post:read")
+     */
     private $prixProd;
 
     /**
      * @ORM\Column(type="boolean")
-      */
+     * @Groups("post:read")
+     */
     private $statusProd;
 
     /**
      * @ORM\Column(type="integer")
-      */
+     * @Groups("post:read")
+     */
     private $rateProd;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups("post:read")
+     */
+    private $quantite;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="champs is required")
-      */
+     * @Groups("post:read")
+     */
     private $descriptionProd;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="champs is required")
-      */
+     * @Groups("post:read")
+     */
     private $categorieProd;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="champs is required")
+     * @Groups("post:read")
      */
     private $imgProd;
 
     /**
      * @ORM\ManyToOne(targetEntity=Promo::class, inversedBy="prods")
+     * @Groups("post:read")
      */
     private $idPromo;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $quantite;
 
     public function getId(): ?int
     {
@@ -87,17 +99,35 @@ class Prod
         return $this;
     }
 
-    public function getPrixProd(): ?int
+    /**
+     * @return mixed
+     */
+    public function getQuantite()
+    {
+        return $this->quantite;
+    }
+
+    /**
+     * @param mixed $quantite
+     */
+    public function setQuantite($quantite): void
+    {
+        $this->quantite = $quantite;
+    }
+
+    public function getPrixProd(): ?string
     {
         return $this->prixProd;
     }
 
-    public function setPrixProd(int $prixProd): self
+    public function setPrixProd(string $prixProd): self
     {
         $this->prixProd = $prixProd;
 
         return $this;
     }
+
+
 
     public function getStatusProd(): ?bool
     {
@@ -167,18 +197,6 @@ class Prod
     public function setIdPromo(?Promo $idPromo): self
     {
         $this->idPromo = $idPromo;
-
-        return $this;
-    }
-
-    public function getQuantite(): ?int
-    {
-        return $this->quantite;
-    }
-
-    public function setQuantite(?int $quantite): self
-    {
-        $this->quantite = $quantite;
 
         return $this;
     }

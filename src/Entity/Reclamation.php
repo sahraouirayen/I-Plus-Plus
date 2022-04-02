@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=ReclamationRepository::class)
@@ -18,32 +20,37 @@ class Reclamation
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("reclamation")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="le champ est requis")
-    */
+     * @Groups("reclamation")
+     */
     private $sujet_rec;
 
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("reclamation")
      */
     private $niveau;
 
 
-  
 
-    
+
+
     /**
      * @ORM\Column(type="integer")
+     * @Groups("reclamation")
      */
     private $user_id;
 
     /**
      * @ORM\ManyToOne(targetEntity=Typereclamations::class, inversedBy="reclamations")
+     * @Groups("reclamation")
      */
     private $typereclamations;
 
@@ -57,7 +64,7 @@ class Reclamation
     {
         return $this->sujet_rec;
     }
- 
+
 
     public function setSujetRec(string $sujet_rec): self
     {
@@ -103,6 +110,6 @@ class Reclamation
         return $this;
     }
 
-   
+
 
 }

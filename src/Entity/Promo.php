@@ -6,6 +6,7 @@ use App\Repository\PromoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,17 +25,23 @@ class Promo
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="champs is required")
+     * @Groups("post:read")
+
      */
     private $pourcentPromo;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="champs is required")
+     * @Groups("post:read")
+
      */
     private $dateExp;
 
     /**
      * @ORM\OneToMany(targetEntity=Prod::class, mappedBy="idPromo")
+
+
      */
     private $prods;
 

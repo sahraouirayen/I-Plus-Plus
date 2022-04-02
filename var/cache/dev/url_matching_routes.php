@@ -50,8 +50,35 @@ return [
         '/mobile/inscription' => [[['_route' => 'mobileinscription', '_controller' => 'App\\Controller\\MobileController::inscription'], null, null, null, false, false, null]],
         '/mobile/connexion' => [[['_route' => 'mobileconnexion', '_controller' => 'App\\Controller\\MobileController::login'], null, null, null, false, false, null]],
         '/mobile/give-user' => [[['_route' => 'mobilegive_user', '_controller' => 'App\\Controller\\MobileController::giveuser'], null, null, null, false, false, null]],
+        '/mobile/getusers' => [[['_route' => 'mobileget_users', '_controller' => 'App\\Controller\\MobileController::getusers'], null, null, null, false, false, null]],
         '/mobile/edit-user' => [[['_route' => 'mobileedit_user', '_controller' => 'App\\Controller\\MobileController::edituser'], null, null, null, false, false, null]],
         '/mobile/motpasseoublie' => [[['_route' => 'mobilemobile_mot_de_passe_oublié', '_controller' => 'App\\Controller\\MobileController::forgottenPassword'], null, null, null, false, false, null]],
+        '/mobile/resetpassword' => [[['_route' => 'mobilemobile_reset_passeword', '_controller' => 'App\\Controller\\MobileController::resetpass'], null, null, null, false, false, null]],
+        '/mobile/admin/edit-user' => [[['_route' => 'mobileadmin_edit_user', '_controller' => 'App\\Controller\\MobileController::adminedituser'], null, null, null, false, false, null]],
+        '/mobile/admin/delete-user' => [[['_route' => 'mobileadmin_delete_user', '_controller' => 'App\\Controller\\MobileController::admindeleteuser'], null, null, null, false, false, null]],
+        '/mobile/evenement' => [[['_route' => 'mobileevents', '_controller' => 'App\\Controller\\MobileController::events'], null, null, null, false, false, null]],
+        '/mobile/addevent' => [[['_route' => 'mobileadd_ev', '_controller' => 'App\\Controller\\MobileController::addevent'], null, null, null, false, false, null]],
+        '/mobile/modifevent' => [[['_route' => 'mobilemodif_ev', '_controller' => 'App\\Controller\\MobileController::editevent'], null, null, null, false, false, null]],
+        '/mobile/deleteevent' => [[['_route' => 'mobiledelete_event', '_controller' => 'App\\Controller\\MobileController::deleteevent'], null, null, null, false, false, null]],
+        '/mobile/affmobPanier' => [[['_route' => 'mobileaffmobPanierbyid', '_controller' => 'App\\Controller\\MobileController::affmobPanier'], null, null, null, false, false, null]],
+        '/mobile/paniermobile/new' => [[['_route' => 'mobileajouterpanier', '_controller' => 'App\\Controller\\MobileController::addmobpanier'], null, null, null, false, false, null]],
+        '/mobile/paniermob/edit' => [[['_route' => 'mobileeditmobPanier', '_controller' => 'App\\Controller\\MobileController::editmobPanier'], null, null, null, false, false, null]],
+        '/mobile/Panier/del' => [[['_route' => 'mobiledeletpanier', '_controller' => 'App\\Controller\\MobileController::delmobcategorie'], null, null, null, false, false, null]],
+        '/mobile/addprod' => [[['_route' => 'mobileaddchambremlbile', '_controller' => 'App\\Controller\\MobileController::addddproduit'], null, null, null, false, false, null]],
+        '/mobile/listeprod' => [[['_route' => 'mobilelistechambremob', '_controller' => 'App\\Controller\\MobileController::listprod'], null, null, null, true, false, null]],
+        '/mobile/editprodmob' => [[['_route' => 'mobileaddchambremlbile3', '_controller' => 'App\\Controller\\MobileController::editproduit'], null, null, null, false, false, null]],
+        '/mobile/addprom' => [[['_route' => 'mobileaddchambremlbile2', '_controller' => 'App\\Controller\\MobileController::addpromo'], null, null, null, false, false, null]],
+        '/mobile/listeprom' => [[['_route' => 'mobilelistechambremob5', '_controller' => 'App\\Controller\\MobileController::listprom'], null, null, null, true, false, null]],
+        '/mobile/editprommob' => [[['_route' => 'mobileaddchambremlbile4', '_controller' => 'App\\Controller\\MobileController::editpromo'], null, null, null, false, false, null]],
+        '/mobile/reclamation/list' => [[['_route' => 'mobileapp_mobile_getlist', '_controller' => 'App\\Controller\\MobileController::getList'], null, null, null, false, false, null]],
+        '/mobile/reclamation/delete' => [[['_route' => 'mobilesupprimer_rec', '_controller' => 'App\\Controller\\MobileController::supprimerReclamation'], null, null, null, false, false, null]],
+        '/mobile/AddReclamation/json' => [[['_route' => 'mobileAddReclamation', '_controller' => 'App\\Controller\\MobileController::AddReclamationJSON'], null, null, null, false, false, null]],
+        '/mobile/AllReclamation/type/json' => [[['_route' => 'mobileapp_mobile_getreclamationlistbytype', '_controller' => 'App\\Controller\\MobileController::getReclamationListByType'], null, null, null, false, false, null]],
+        '/mobile/actt/AllActualite' => [[['_route' => 'mobileAllActualite', '_controller' => 'App\\Controller\\MobileController::AllActualite'], null, null, null, false, false, null]],
+        '/mobile/AddActualitejson/new' => [[['_route' => 'mobileAddActualitejson', '_controller' => 'App\\Controller\\MobileController::AddActualitejson'], null, null, null, false, false, null]],
+        '/mobile/AddType/json' => [[['_route' => 'mobileAddtype', '_controller' => 'App\\Controller\\MobileController::AddPostsJSON'], null, null, null, false, false, null]],
+        '/mobile/type/list' => [[['_route' => 'mobileapp_mobile_getlist1', '_controller' => 'App\\Controller\\MobileController::getList1'], null, null, null, false, false, null]],
+        '/mobile/panier/add' => [[['_route' => 'mobilecommande_mobadd', '_controller' => 'App\\Controller\\MobileController::successmob'], null, null, null, false, false, null]],
         '/user/compte' => [[['_route' => 'compte_user', '_controller' => 'App\\Controller\\ModifyUserController::index'], null, null, null, false, false, null]],
         '/user/compte/modifier' => [[['_route' => 'modifier_user', '_controller' => 'App\\Controller\\ModifyUserController::modifier'], null, null, null, false, false, null]],
         '/user/compte/modifier/mdp' => [[['_route' => 'compte_password', '_controller' => 'App\\Controller\\ModifyUserController::modifPass'], null, null, null, false, false, null]],
@@ -168,28 +195,38 @@ return [
                     .'|/edit(*:910)'
                     .'|(*:918)'
                 .')'
+                .'|/mobile/(?'
+                    .'|supppro(?'
+                        .'|d/([^/]++)(*:958)'
+                        .'|m/([^/]++)(*:976)'
+                    .')'
+                    .'|modifier/reclamation/(\\d+)(*:1011)'
+                    .'|UpdateActualitejson/([^/]++)/edit(*:1053)'
+                    .'|deleteActualitejson/([^/]++)(*:1090)'
+                    .'|reservation/([^/]++)/([^/]++)(*:1128)'
+                .')'
                 .'|/re(?'
                     .'|clamation/([^/]++)(?'
-                        .'|(*:954)'
-                        .'|/edit(*:967)'
-                        .'|(*:975)'
+                        .'|(*:1165)'
+                        .'|/edit(*:1179)'
+                        .'|(*:1188)'
                     .')'
                     .'|servation/(?'
-                        .'|new/([^/]++)/([^/]++)(*:1018)'
+                        .'|new/([^/]++)/([^/]++)(*:1232)'
                         .'|([^/]++)(?'
-                            .'|(*:1038)'
-                            .'|/edit(*:1052)'
-                            .'|(*:1061)'
+                            .'|(*:1252)'
+                            .'|/edit(*:1266)'
+                            .'|(*:1275)'
                         .')'
                     .')'
-                    .'|initialiser\\-mot\\-de\\-passe/([^/]++)(*:1108)'
+                    .'|initialiser\\-mot\\-de\\-passe/([^/]++)(*:1322)'
                 .')'
                 .'|/typereclamations/([^/]++)(?'
-                    .'|(*:1147)'
-                    .'|/edit(*:1161)'
-                    .'|(*:1170)'
+                    .'|(*:1361)'
+                    .'|/edit(*:1375)'
+                    .'|(*:1384)'
                 .')'
-                .'|/qr\\-code/([^/]++)/([\\w\\W]+)(*:1208)'
+                .'|/qr\\-code/([^/]++)/([\\w\\W]+)(*:1422)'
             .')/?$}sD',
     ],
     [ // $dynamicRoutes
@@ -235,18 +272,24 @@ return [
         897 => [[['_route' => 'app_ligne_commande_show', '_controller' => 'App\\Controller\\LigneCommandeController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         910 => [[['_route' => 'app_ligne_commande_edit', '_controller' => 'App\\Controller\\LigneCommandeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         918 => [[['_route' => 'app_ligne_commande_delete', '_controller' => 'App\\Controller\\LigneCommandeController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        954 => [[['_route' => 'reclamation_show', '_controller' => 'App\\Controller\\ReclamationController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        967 => [[['_route' => 'reclamation_edit', '_controller' => 'App\\Controller\\ReclamationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        975 => [[['_route' => 'reclamation_delete', '_controller' => 'App\\Controller\\ReclamationController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1018 => [[['_route' => 'app_reservation_new', '_controller' => 'App\\Controller\\ReservationController::new'], ['idevent', 'idUser'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        1038 => [[['_route' => 'app_reservation_show', '_controller' => 'App\\Controller\\ReservationController::show'], ['idReservation'], ['GET' => 0], null, false, true, null]],
-        1052 => [[['_route' => 'app_reservation_edit', '_controller' => 'App\\Controller\\ReservationController::edit'], ['idReservation'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1061 => [[['_route' => 'app_reservation_delete', '_controller' => 'App\\Controller\\ReservationController::delete'], ['idReservation'], ['POST' => 0], null, false, true, null]],
-        1108 => [[['_route' => 'app_reset_password', '_controller' => 'App\\Controller\\SecurityController::resetPassword'], ['token'], null, null, false, true, null]],
-        1147 => [[['_route' => 'app_typereclamations_show', '_controller' => 'App\\Controller\\TypereclamationsController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        1161 => [[['_route' => 'app_typereclamations_edit', '_controller' => 'App\\Controller\\TypereclamationsController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        1170 => [[['_route' => 'app_typereclamations_delete', '_controller' => 'App\\Controller\\TypereclamationsController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        1208 => [
+        958 => [[['_route' => 'mobilesupchambmobile', '_controller' => 'App\\Controller\\MobileController::suprimerrod'], ['id'], null, null, false, true, null]],
+        976 => [[['_route' => 'mobilesupprommobile', '_controller' => 'App\\Controller\\MobileController::suprimerprom'], ['id'], null, null, false, true, null]],
+        1011 => [[['_route' => 'mobilerec_edit', '_controller' => 'App\\Controller\\MobileController::reclamationModif'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        1053 => [[['_route' => 'mobileUpdateActualitejson', '_controller' => 'App\\Controller\\MobileController::UpdateActualitejson'], ['idActualite'], null, null, false, false, null]],
+        1090 => [[['_route' => 'mobiledeleteActualitejson', '_controller' => 'App\\Controller\\MobileController::deleteActualitejson'], ['id'], null, null, false, true, null]],
+        1128 => [[['_route' => 'mobileapp_reservation_new', '_controller' => 'App\\Controller\\MobileController::new'], ['idevent', 'idUser'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        1165 => [[['_route' => 'reclamation_show', '_controller' => 'App\\Controller\\ReclamationController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1179 => [[['_route' => 'reclamation_edit', '_controller' => 'App\\Controller\\ReclamationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1188 => [[['_route' => 'reclamation_delete', '_controller' => 'App\\Controller\\ReclamationController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1232 => [[['_route' => 'app_reservation_new', '_controller' => 'App\\Controller\\ReservationController::new'], ['idevent', 'idUser'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        1252 => [[['_route' => 'app_reservation_show', '_controller' => 'App\\Controller\\ReservationController::show'], ['idReservation'], ['GET' => 0], null, false, true, null]],
+        1266 => [[['_route' => 'app_reservation_edit', '_controller' => 'App\\Controller\\ReservationController::edit'], ['idReservation'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1275 => [[['_route' => 'app_reservation_delete', '_controller' => 'App\\Controller\\ReservationController::delete'], ['idReservation'], ['POST' => 0], null, false, true, null]],
+        1322 => [[['_route' => 'app_reset_password', '_controller' => 'App\\Controller\\SecurityController::resetPassword'], ['token'], null, null, false, true, null]],
+        1361 => [[['_route' => 'app_typereclamations_show', '_controller' => 'App\\Controller\\TypereclamationsController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        1375 => [[['_route' => 'app_typereclamations_edit', '_controller' => 'App\\Controller\\TypereclamationsController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        1384 => [[['_route' => 'app_typereclamations_delete', '_controller' => 'App\\Controller\\TypereclamationsController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        1422 => [
             [['_route' => 'qr_code_generate', '_controller' => 'Endroid\\QrCodeBundle\\Controller\\GenerateController'], ['builder', 'data'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

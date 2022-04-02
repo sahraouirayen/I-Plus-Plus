@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Reservation
@@ -18,13 +20,14 @@ class Reservation
      * @ORM\Column(name="id_reservation", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     *  @Groups("post:read")
      */
     private $idReservation;
 
     /**
      * @var \User
         * @ORM\Column(name="id_user", type="integer", nullable=false)
-
+     * @Groups("post:read")
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
@@ -35,7 +38,7 @@ class Reservation
     /**
      * @var \Evenement
          * @ORM\Column(name="id_evenement", type="integer", nullable=false)
-
+     * @Groups("post:read")
      * @ORM\ManyToOne(targetEntity="Evenement")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_evenement", referencedColumnName="id_event")
@@ -64,7 +67,7 @@ class Reservation
         return $this->idUser;
     }
 
-    public function setidReservation(): self
+    public function setidReservation(int $idReservation): self
     {
         $this->idReservation = $idReservation;
 

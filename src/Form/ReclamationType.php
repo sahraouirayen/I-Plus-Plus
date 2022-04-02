@@ -18,7 +18,6 @@ class ReclamationType extends AbstractType
         $builder
             ->add('sujet_rec')
             ->add('user_id',HiddenType::class)
-            ->add('enregistrer',SubmitType::class)
             ->add('typereclamations')
             ->add('niveau', ChoiceType::class, [
                 'choices'  => [
