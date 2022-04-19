@@ -1,0 +1,101 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaServices;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javaentity.actualite;
+import javatools.myconnection;
+
+/**
+ *
+ * @author sahra
+ */
+public class actualiteCRUD {
+   
+    public void ajoutactualite2(actualite a){
+        try {
+            String requete2 = "INSERT INTO actualite(titre_actualite,description,etendu,image_act,rating_act,vu) "
+                    + "VALUES (?,?,?,?,?,?) ";
+            PreparedStatement pst = new myconnection().getConnection().prepareStatement(requete2);
+            pst.setString(1, a.getTitre_actualite());
+            pst.setString(2, a.getDescription());
+            pst.setString(3, a.getEtendu());
+            pst.setString(4, a.getImage_act());
+            pst.setInt(5, a.getRating_act());
+            pst.setInt(6, a.getVu());
+            pst.executeUpdate();
+            System.out.println("actualite ajoute avec succes");
+        } catch (SQLException ex) {
+System.err.println(ex.getMessage()); 
+        }
+    }
+    public void DeleteActualite(int ac){
+          try {
+              String req = "DELETE from actualite  WHERE id_actualite =" +ac+ " ";
+               Statement st = new myconnection().getConnection().createStatement();
+              st.executeUpdate(req);
+              System.out.println("done");
+          } catch (SQLException ex) {
+              System.err.println(ex.getMessage()); 
+
+          }
+          }
+        
+        public void UpdateActualite(actualite a,int ida)
+        { String req ="UPDATE actualite set titre_actualite=? , description=? , etendu=?,image_act=?, rating_act=?,vu=? WHERE id_actualite =" +ida+ " ";
+        try {
+           PreparedStatement pst = new myconnection().getConnection().prepareStatement(req);
+            pst.setString(1, a.getTitre_actualite());
+            pst.setString(2, a.getDescription());
+            pst.setString(3, a.getEtendu());
+            pst.setString(4, a.getImage_act());
+            pst.setInt(5, a.getRating_act());
+            pst.setInt(6, a.getVu());
+              pst.executeUpdate();
+              System.out.println("actualite modifié");
+            
+        } catch (SQLException ex) {
+            
+              System.err.println(ex.getMessage()); 
+            
+        } 
+        }
+    public List<actualite> afficheractualite(){
+                    List<actualite> myList =new ArrayList<>();
+        try {
+            String requete3 = "SELECT * FROM actualite";
+            Statement st =new myconnection().getConnection().createStatement();
+           ResultSet rs = st.executeQuery(requete3);
+           while (rs.next()){
+           actualite a = new actualite();
+           a.setId_actualite(rs.getInt(1));
+           a.setTitre_actualite(rs.getString("titre_actualite"));
+           a.setDescription(rs.getString("description"));
+           a.setEtendu(rs.getString("etendu"));
+           a.setImage_act(rs.getString("image_act"));
+           a.setRating_act(rs.getInt(7));
+           a.setVu(rs.getInt(9));
+           myList.add(a);
+
+           
+           }
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage()); 
+        }
+        return myList;
+    }
+
+   
+    
+}

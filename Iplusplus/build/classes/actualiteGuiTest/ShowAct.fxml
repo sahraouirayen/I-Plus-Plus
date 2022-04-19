@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="actualiteGuiTest.ShowActController">
+   <children>
+      <Label layoutX="41.0" layoutY="84.0" prefHeight="24.0" prefWidth="43.0" text="Titre" />
+      <Label layoutX="41.0" layoutY="131.0" text="Description" />
+      <Label layoutX="41.0" layoutY="170.0" text="Descrition Etendu" />
+      <Label layoutX="41.0" layoutY="210.0" text="Image" />
+      <Label layoutX="40.0" layoutY="250.0" text="Rating" />
+      <Label layoutX="40.0" layoutY="290.0" text="Vu" />
+      <TextField fx:id="tftitre" editable="false" layoutX="148.0" layoutY="84.0" />
+      <TextField fx:id="tfdescription" editable="false" layoutX="148.0" layoutY="127.0" />
+      <TextField fx:id="tfetendu" editable="false" layoutX="148.0" layoutY="166.0" />
+      <TextField fx:id="tfimage" editable="false" layoutX="148.0" layoutY="215.0" />
+      <TextField fx:id="tfrating" editable="false" layoutX="148.0" layoutY="255.0" />
+      <TextField fx:id="tfvu" editable="false" layoutX="148.0" layoutY="295.0" />
+   </children>
+</AnchorPane>
