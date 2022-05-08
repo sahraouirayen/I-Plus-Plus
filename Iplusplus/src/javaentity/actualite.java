@@ -9,7 +9,11 @@ package javaentity;
  *
  * @author sahra
  */
-public class actualite {
+public class actualite implements Comparable<actualite> {
+
+    public static void add(actualite a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    private  int id_actualite;
    private String titre_actualite;
    private String description;
@@ -17,7 +21,35 @@ public class actualite {
    private String image_act;
    private int rating_act;
    private int vu;
+   private  categorie categorie;
 
+    public actualite(int id_actualite, String titre_actualite, String description, String etendu, String image_act, int rating_act, int vu, categorie categorie) {
+        this.id_actualite = id_actualite;
+        this.titre_actualite = titre_actualite;
+        this.description = description;
+        this.etendu = etendu;
+        this.image_act = image_act;
+        this.rating_act = rating_act;
+        this.vu = vu;
+        this.categorie = categorie;
+    }
+
+    public actualite(int id_actualite, String titre_actualite, String description, String etendu, String image_act, categorie categorie) {
+        this.id_actualite = id_actualite;
+        this.titre_actualite = titre_actualite;
+        this.description = description;
+        this.etendu = etendu;
+        this.image_act = image_act;
+        this.categorie = categorie;
+    }
+
+    public actualite(String titre_actualite, String description, String etendu, String image_act, categorie categorie) {
+        this.titre_actualite = titre_actualite;
+        this.description = description;
+        this.etendu = etendu;
+        this.image_act = image_act;
+        this.categorie = categorie;
+    }
    public actualite(){
    
    }
@@ -96,9 +128,23 @@ public class actualite {
         this.vu = vu;
     }
 
+    public categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(categorie categorie) {
+        this.categorie = categorie;
+    }
+
     @Override
     public String toString() {
         return "actualite{" + "id_actualite=" + id_actualite + ", titre_actualite=" + titre_actualite + ", description=" + description + ", etendu=" + etendu + ", image_act=" + image_act + ", rating_act=" + rating_act + ", vu=" + vu + '}';
     }
-   
+
+    @Override
+    public int compareTo(actualite o) {
+        return(o.rating_act-this.rating_act);
+    
+    }
+    
 }

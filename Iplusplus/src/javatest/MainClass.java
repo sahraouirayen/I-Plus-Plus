@@ -7,6 +7,8 @@ package javatest;
 
 import javaServices.actualiteCRUD;
 import javaentity.actualite;
+import javaServices.categorieCRUD;
+import javaentity.categorie;
 import javatools.myconnection;
 
 /**
@@ -22,5 +24,11 @@ public class MainClass {
         //System.out.println(acd.afficheractualite());
        // acd.DeleteActualite(2);
        acd.UpdateActualite(a2,30);
+         categorieCRUD ccd = new categorieCRUD();
+        categorie c2 = new categorie("sensitive");
+        //ccd.ajoutCategorie2(c2);
+        //System.out.println(ccd.afficherCategorie());
+       //ccd.DeleteCategorie(320);
+       ccd.UpdateCategorie(c2,320);
     }    
 }
